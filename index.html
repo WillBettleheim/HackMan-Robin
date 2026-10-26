@@ -1,0 +1,3020 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>Hackman & Robin: The Cyber Dynamic Duo</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Plus Jakarta Sans, Space Grotesk, JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,500;0,700;0,800;1,500&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            display: ['"Space Grotesk"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* =====================================================================
+       1. COMPREHENSIVE THEME ENGINE (100% WCAG HIGH-CONTRAST VISIBILITY)
+       ===================================================================== */
+    :root,
+    [data-theme="day"] {
+      --bg-page: #dce7f3;
+      --bg-grid-line: rgba(15, 23, 42, 0.09);
+      --bg-window: #fffdf8;
+      --bg-surface: #ffffff;
+      --bg-elevated: #f1f5f9;
+      --bg-subtle: #e2e8f0;
+      --bg-input: #ffffff;
+      --bg-vault: #0f172a;
+
+      --text-primary: #0f172a;
+      --text-secondary: #334155;
+      --text-muted: #64748b;
+      --text-on-accent: #0f172a;
+
+      --border-ink: #0f172a;
+      --border-subtle: rgba(15, 23, 42, 0.16);
+      --shadow-color: #0f172a;
+
+      --accent-pink: #ff7eb6;
+      --accent-blue: #38bdf8;
+      --accent-yellow: #ffd43b;
+      --accent-mint: #4ade80;
+      --accent-orange: #fb923c;
+      --accent-purple: #c084fc;
+      --accent-danger: #f43f5e;
+
+      /* Theme-adaptive soft tint boxes */
+      --tint-pink: #fce7f3;
+      --tint-blue: #e0f2fe;
+      --tint-yellow: #fef9c3;
+      --tint-green: #dcfce7;
+      --tint-orange: #ffedd5;
+      --tint-purple: #f3e8ff;
+    }
+
+    [data-theme="midnight"] {
+      --bg-page: #090d16;
+      --bg-grid-line: rgba(56, 189, 248, 0.12);
+      --bg-window: #111827;
+      --bg-surface: #1a2438;
+      --bg-elevated: #24324d;
+      --bg-subtle: #334155;
+      --bg-input: #0d1322;
+      --bg-vault: #050811;
+
+      --text-primary: #f8fafc;
+      --text-secondary: #cbd5e1;
+      --text-muted: #94a3b8;
+      --text-on-accent: #090d16;
+
+      --border-ink: #38bdf8;
+      --border-subtle: rgba(56, 189, 248, 0.28);
+      --shadow-color: #020617;
+
+      --accent-pink: #fb7185;
+      --accent-blue: #38bdf8;
+      --accent-yellow: #facc15;
+      --accent-mint: #34d399;
+      --accent-orange: #fb923c;
+      --accent-purple: #c084fc;
+      --accent-danger: #f43f5e;
+
+      /* Dark-mode safe tinted containers (light text stays 100% readable) */
+      --tint-pink: rgba(244, 63, 94, 0.20);
+      --tint-blue: rgba(56, 189, 248, 0.18);
+      --tint-yellow: rgba(250, 204, 21, 0.18);
+      --tint-green: rgba(52, 211, 153, 0.18);
+      --tint-orange: rgba(251, 146, 60, 0.20);
+      --tint-purple: rgba(192, 132, 252, 0.20);
+    }
+
+    [data-theme="arcade"] {
+      --bg-page: #b8e4d8;
+      --bg-grid-line: rgba(17, 34, 31, 0.10);
+      --bg-window: #fffdf7;
+      --bg-surface: #ffffff;
+      --bg-elevated: #f2efe4;
+      --bg-subtle: #e2decb;
+      --bg-input: #ffffff;
+      --bg-vault: #11221f;
+
+      --text-primary: #11221f;
+      --text-secondary: #2c4742;
+      --text-muted: #52736d;
+      --text-on-accent: #11221f;
+
+      --border-ink: #11221f;
+      --border-subtle: rgba(17, 34, 31, 0.18);
+      --shadow-color: #081412;
+
+      --accent-pink: #ff6b8b;
+      --accent-blue: #2dd4bf;
+      --accent-yellow: #facc15;
+      --accent-mint: #4ade80;
+      --accent-orange: #fb923c;
+      --accent-purple: #a78bfa;
+      --accent-danger: #ef4444;
+
+      --tint-pink: #ffe4e6;
+      --tint-blue: #ccfbf1;
+      --tint-yellow: #fef3c7;
+      --tint-green: #d1fae5;
+      --tint-orange: #ffedd5;
+      --tint-purple: #ede9fe;
+    }
+
+    /* =====================================================================
+       2. SMOOTH NATIVE SCROLLING & RESPONSIVE BASE LAYOUT
+       ===================================================================== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      min-height: 100vh;
+      height: auto;
+      width: 100%;
+      overflow-x: hidden;
+      overflow-y: auto;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      background-color: var(--bg-page);
+      background-image:
+        linear-gradient(to right, var(--bg-grid-line) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--bg-grid-line) 1px, transparent 1px);
+      background-size: 32px 32px;
+      color: var(--text-primary);
+      transition: background-color 0.22s ease, color 0.22s ease;
+    }
+
+    /* Semantic Theme Typography Utilities */
+    .t-primary { color: var(--text-primary) !important; }
+    .t-secondary { color: var(--text-secondary) !important; }
+    .t-muted { color: var(--text-muted) !important; }
+    .t-on-accent { color: var(--text-on-accent) !important; }
+
+    /* Semantic Theme Surface Utilities */
+    .s-window {
+      background-color: var(--bg-window);
+      color: var(--text-primary);
+      border: 2.5px solid var(--border-ink);
+      border-radius: 18px;
+      box-shadow: 5px 5px 0px var(--shadow-color);
+      transition: background-color 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+    }
+
+    .s-card {
+      background-color: var(--bg-surface);
+      color: var(--text-primary);
+      border: 2.5px solid var(--border-ink);
+      border-radius: 14px;
+      box-shadow: 3.5px 3.5px 0px var(--shadow-color);
+      transition: background-color 0.22s ease, border-color 0.22s ease;
+    }
+
+    .s-card-flat {
+      background-color: var(--bg-surface);
+      color: var(--text-primary);
+      border: 2px solid var(--border-ink);
+      border-radius: 11px;
+      transition: background-color 0.22s ease, border-color 0.22s ease;
+    }
+
+    .s-elevated {
+      background-color: var(--bg-elevated);
+      color: var(--text-primary);
+      border: 2px solid var(--border-ink);
+      border-radius: 11px;
+      transition: background-color 0.22s ease, border-color 0.22s ease;
+    }
+
+    .s-input {
+      background-color: var(--bg-input);
+      color: var(--text-primary);
+      border: 2.5px solid var(--border-ink);
+      box-shadow: 3.5px 3.5px 0px var(--shadow-color);
+      transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    }
+    .s-input::placeholder {
+      color: var(--text-muted);
+      opacity: 0.85;
+    }
+    .s-input:focus {
+      outline: none;
+      box-shadow: 2px 2px 0px var(--shadow-color), 0 0 0 3px var(--accent-pink);
+    }
+
+    /* Tinted Alert / Info Containers (Always match --text-primary!) */
+    .tint-pink { background-color: var(--tint-pink); color: var(--text-primary); border: 2px solid var(--border-ink); }
+    .tint-blue { background-color: var(--tint-blue); color: var(--text-primary); border: 2px solid var(--border-ink); }
+    .tint-yellow { background-color: var(--tint-yellow); color: var(--text-primary); border: 2px solid var(--border-ink); }
+    .tint-green { background-color: var(--tint-green); color: var(--text-primary); border: 2px solid var(--border-ink); }
+    .tint-orange { background-color: var(--tint-orange); color: var(--text-primary); border: 2px solid var(--border-ink); }
+    .tint-purple { background-color: var(--tint-purple); color: var(--text-primary); border: 2px solid var(--border-ink); }
+
+    /* Solid Pop-Art Accent Surfaces (Always paired with dark ink text for 100% contrast) */
+    .accent-pink { background-color: var(--accent-pink); color: var(--text-on-accent) !important; }
+    .accent-blue { background-color: var(--accent-blue); color: var(--text-on-accent) !important; }
+    .accent-yellow { background-color: var(--accent-yellow); color: var(--text-on-accent) !important; }
+    .accent-mint { background-color: var(--accent-mint); color: var(--text-on-accent) !important; }
+    .accent-orange { background-color: var(--accent-orange); color: var(--text-on-accent) !important; }
+    .accent-purple { background-color: var(--accent-purple); color: var(--text-on-accent) !important; }
+    .accent-danger { background-color: var(--accent-danger); color: #ffffff !important; }
+
+    /* Tactile 3D Push Buttons */
+    .pop-btn {
+      border: 2.5px solid var(--border-ink);
+      border-radius: 11px;
+      box-shadow: 3.5px 3.5px 0px var(--shadow-color);
+      transition: transform 0.1s ease, box-shadow 0.1s ease, filter 0.15s ease;
+      cursor: pointer;
+      user-select: none;
+      touch-action: manipulation;
+    }
+    .pop-btn:hover {
+      transform: translate(-1.5px, -1.5px);
+      box-shadow: 5px 5px 0px var(--shadow-color);
+      filter: brightness(1.03);
+    }
+    .pop-btn:active {
+      transform: translate(2px, 2px);
+      box-shadow: 1px 1px 0px var(--shadow-color);
+    }
+
+    .pop-btn-sm {
+      border: 2px solid var(--border-ink);
+      border-radius: 9px;
+      box-shadow: 2.5px 2.5px 0px var(--shadow-color);
+      transition: transform 0.1s ease, box-shadow 0.1s ease, background-color 0.15s ease;
+      cursor: pointer;
+      user-select: none;
+      touch-action: manipulation;
+    }
+    .pop-btn-sm:hover {
+      transform: translate(-1px, -1px);
+      box-shadow: 3.5px 3.5px 0px var(--shadow-color);
+    }
+    .pop-btn-sm:active {
+      transform: translate(1.5px, 1.5px);
+      box-shadow: 1px 1px 0px var(--shadow-color);
+    }
+
+    .btn-surface {
+      background-color: var(--bg-surface);
+      color: var(--text-primary);
+    }
+    .btn-surface:hover {
+      background-color: var(--bg-elevated);
+    }
+
+    /* Custom Range Slider */
+    input[type=range].pop-slider {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: 14px;
+      background: var(--bg-elevated);
+      border: 2.5px solid var(--border-ink);
+      border-radius: 999px;
+      outline: none;
+    }
+    input[type=range].pop-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 26px;
+      height: 26px;
+      background: var(--accent-pink);
+      border: 2.5px solid #0f172a;
+      border-radius: 8px;
+      box-shadow: 2px 2px 0px var(--shadow-color);
+      cursor: pointer;
+      transition: transform 0.1s ease, background-color 0.15s ease;
+    }
+    input[type=range].pop-slider::-webkit-slider-thumb:hover {
+      transform: scale(1.1);
+      background: var(--accent-yellow);
+    }
+    input[type=range].pop-slider::-moz-range-thumb {
+      width: 26px;
+      height: 26px;
+      background: var(--accent-pink);
+      border: 2.5px solid #0f172a;
+      border-radius: 8px;
+      box-shadow: 2px 2px 0px var(--shadow-color);
+      cursor: pointer;
+    }
+
+    /* Segmented 10-Block Neo-Brutalist Meter */
+    .meter-seg {
+      height: 16px;
+      border: 2px solid var(--border-ink);
+      border-radius: 5px;
+      background-color: var(--bg-elevated);
+      transition: background-color 0.25s ease, transform 0.2s ease;
+    }
+    .meter-seg.active {
+      transform: translateY(-1px);
+    }
+
+    /* Animations */
+    @keyframes panicShake {
+      0%, 100% { transform: scale(1); }
+      25% { transform: translateX(-6px) rotate(-0.5deg); }
+      50% { transform: translateX(6px) rotate(0.5deg); }
+      75% { transform: translateX(-3px); }
+    }
+    .wipe-anim {
+      animation: panicShake 0.4s ease-in-out;
+    }
+
+    @keyframes popHighlight {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.015); }
+    }
+    .window-ping {
+      animation: popHighlight 0.35s ease;
+    }
+
+    /* X-Ray Pill Styling */
+    .xray-pill {
+      min-width: 34px;
+      height: 40px;
+      border: 2px solid #0f172a;
+      border-radius: 9px;
+      box-shadow: 2px 2px 0px var(--shadow-color);
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 800;
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: transform 0.12s ease, box-shadow 0.12s ease;
+      user-select: none;
+      touch-action: manipulation;
+    }
+    .xray-pill:hover, .xray-pill:focus {
+      transform: translateY(-2.5px) scale(1.05);
+      box-shadow: 3.5px 3.5px 0px var(--shadow-color);
+      z-index: 10;
+      outline: none;
+    }
+
+    @keyframes pulseUrgent {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.04); }
+    }
+    .defusal-urgent {
+      animation: pulseUrgent 0.45s infinite ease-in-out;
+    }
+
+    /* Ensure hidden overlays never trap scroll or pointer events */
+    .modal-hidden {
+      display: none !important;
+      pointer-events: none !important;
+    }
+    .modal-active {
+      display: flex !important;
+      pointer-events: auto !important;
+    }
+  </style>
+</head>
+<body class="font-sans pb-14" data-theme="day">
+
+  <!-- FLOATING TOAST NOTIFICATION (Pointer-Events-None so scroll is never blocked) -->
+  <div id="duoToast" class="fixed bottom-4 right-4 left-4 sm:left-auto z-50 pointer-events-none opacity-0 translate-y-3 transition-all duration-300 flex justify-center sm:justify-end">
+    <div class="s-card accent-yellow px-4 py-3 flex items-center gap-3 max-w-sm w-full sm:w-auto">
+      <span id="duoToastIcon" class="text-2xl flex-shrink-0">🦇</span>
+      <div class="min-w-0">
+        <div id="duoToastTitle" class="font-display font-extrabold text-xs sm:text-sm uppercase t-on-accent truncate">BAT-ALERT</div>
+        <div id="duoToastMsg" class="font-sans font-bold text-xs t-on-accent break-words">Action completed!</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 1. TOP DETECTIVE COMMAND HEADER -->
+  <header class="w-full max-w-[1640px] mx-auto px-3 sm:px-5 pt-4 pb-2">
+    <div class="s-window px-4 sm:px-5 py-3.5 flex flex-col xl:flex-row items-center justify-between gap-3.5">
+      
+      <!-- Brand Identity -->
+      <div class="flex items-center gap-3 sm:gap-4 w-full xl:w-auto justify-center xl:justify-start text-center sm:text-left">
+        <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl accent-yellow border-[2.5px] border-[#0f172a] shadow-[3px_3px_0px_#0f172a] flex items-center justify-center text-2xl sm:text-3xl flex-shrink-0">
+          🦇
+        </div>
+        <div class="min-w-0">
+          <div class="flex flex-wrap items-center justify-center sm:justify-start gap-2">
+            <h1 class="font-display font-extrabold text-xl sm:text-2xl md:text-3xl tracking-tight t-primary">
+              HACKMAN &amp; ROBIN ⚡
+            </h1>
+            <span class="accent-pink font-mono text-[11px] sm:text-xs font-extrabold px-2.5 py-0.5 rounded-full border-2 border-[#0f172a] shadow-[2px_2px_0px_#0f172a]">
+              CYBER DUO v4.0
+            </span>
+          </div>
+          <p class="text-xs sm:text-sm font-semibold t-secondary mt-0.5">
+            Pop-Art Password Analyser • 15s Joker Defusal Arena • Zero-Storage Secret Vault
+          </p>
+        </div>
+      </div>
+
+      <!-- Top Right Command Controls + Theme Switcher -->
+      <div class="flex flex-wrap items-center justify-center gap-2 w-full xl:w-auto">
+        
+        <!-- FEATURE #6: ONE-CLICK RETRO COLOR THEMES (DAY / MIDNIGHT / ARCADE) -->
+        <div class="s-elevated p-1 flex flex-wrap items-center justify-center gap-1 shadow-[2.5px_2.5px_0px_var(--shadow-color)]">
+          <button type="button" onclick="duoApp.setTheme('day')" id="themeBtn_day"
+                  class="px-2.5 sm:px-3 py-1.5 rounded-lg font-display font-extrabold text-xs flex items-center gap-1 accent-yellow border-2 border-[#0f172a] transition-all">
+            <span>☀️</span> <span>Day</span>
+          </button>
+          <button type="button" onclick="duoApp.setTheme('midnight')" id="themeBtn_midnight"
+                  class="px-2.5 sm:px-3 py-1.5 rounded-lg font-display font-extrabold text-xs flex items-center gap-1 t-primary hover:opacity-80 transition-all">
+            <span>🌙</span> <span>Midnight</span>
+          </button>
+          <button type="button" onclick="duoApp.setTheme('arcade')" id="themeBtn_arcade"
+                  class="px-2.5 sm:px-3 py-1.5 rounded-lg font-display font-extrabold text-xs flex items-center gap-1 t-primary hover:opacity-80 transition-all">
+            <span>🕹️</span> <span>Arcade</span>
+          </button>
+        </div>
+
+        <!-- Sound Effects Toggle -->
+        <button type="button" onclick="duoApp.toggleSound()" id="sfxBtn"
+                class="pop-btn accent-blue font-display font-extrabold text-xs px-3 py-2 flex items-center gap-1.5">
+          <span id="sfxIcon" class="text-sm">🔊</span>
+          <span id="sfxText">SFX: ON</span>
+        </button>
+
+        <!-- FEATURE #5: PROMINENT PANIC WIPE (ESC BOSS KEY) -->
+        <button type="button" onclick="duoApp.panicWipe('button')" title="Shortcut: Press ESC key anytime"
+                class="pop-btn accent-danger font-display font-extrabold text-xs px-3.5 py-2 flex items-center gap-1.5">
+          <span class="text-sm">🚨</span>
+          <span>PANIC WIPE (ESC)</span>
+        </button>
+
+        <!-- Terms & Duo Charter -->
+        <button type="button" onclick="duoApp.openTermsModal()"
+                class="pop-btn accent-yellow font-display font-extrabold text-xs px-3 py-2 flex items-center gap-1.5">
+          <span class="text-sm">📜</span>
+          <span>Terms</span>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- 2. MAIN 3-COLUMN WORKSPACE (MOBILE: 1-COL, TABLET: 2-COL WITH CENTER CHALLENGE, DESKTOP XL: 3-COL) -->
+  <main id="mainWorkspace" class="w-full max-w-[1640px] mx-auto px-3 sm:px-5 py-3">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 xl:gap-6 items-start">
+
+      <!-- =================================================================== -->
+      <!-- COLUMN 1 (LEFT): 01 // PASSWORD STRENGTH ANALYSER                   -->
+      <!-- =================================================================== -->
+      <section id="analyserWindow" class="lg:col-span-6 xl:col-span-4 order-1 s-window overflow-hidden flex flex-col">
+        
+        <!-- Window Title Bar (Pink Pop Header) -->
+        <div class="accent-pink border-b-[2.5px] border-[#0f172a] px-4 py-3 flex items-center justify-between gap-2">
+          <div class="flex items-center gap-2 min-w-0">
+            <span class="bg-[#0f172a] text-white font-mono font-extrabold text-xs px-2 py-0.5 rounded-md flex-shrink-0">01</span>
+            <h2 class="font-display font-extrabold text-xs sm:text-sm tracking-wide uppercase t-on-accent truncate">
+              PASSWORD STRENGTH ANALYSER
+            </h2>
+          </div>
+          <div class="flex items-center space-x-1.5 font-mono font-bold text-xs flex-shrink-0">
+            <span class="w-5 h-5 rounded bg-white/90 text-[#0f172a] border-2 border-[#0f172a] flex items-center justify-center leading-none">—</span>
+            <button type="button" onclick="duoApp.clearAnalyser()" title="Clear Analyser"
+                    class="w-5 h-5 rounded accent-orange border-2 border-[#0f172a] flex items-center justify-center leading-none hover:brightness-110">×</button>
+          </div>
+        </div>
+
+        <div class="p-4 sm:p-5 space-y-5">
+
+          <!-- Password Input Section -->
+          <div class="space-y-2">
+            <div class="flex items-center justify-between gap-2">
+              <label for="analyserInput" class="font-display font-extrabold text-xs sm:text-sm t-primary flex items-center gap-1.5">
+                <span>🕵️‍♂️</span> Inspect Any Password:
+              </label>
+              <span id="charCountPill" class="font-mono text-[11px] font-extrabold s-elevated px-2.5 py-0.5 rounded-full shadow-[2px_2px_0px_var(--shadow-color)]">
+                0 Characters
+              </span>
+            </div>
+
+            <!-- Theme-Adaptive High-Contrast Input Box -->
+            <div class="relative">
+              <input type="password" id="analyserInput" autocomplete="off" spellcheck="false"
+                     placeholder="Type or paste a password to inspect..."
+                     class="w-full h-12 sm:h-13 s-input rounded-xl px-3.5 pr-11 font-mono text-sm sm:text-base font-bold">
+              <button type="button" onclick="duoApp.clearAnalyser()" title="Clear Field"
+                      class="absolute right-2.5 top-1/2 -translate-y-1/2 w-7 h-7 rounded-lg s-elevated hover:opacity-90 font-mono font-extrabold text-xs flex items-center justify-center">
+                ✕
+              </button>
+            </div>
+
+            <!-- Quick Action Bar Below Input -->
+            <div class="flex flex-wrap items-center justify-between gap-2 pt-1">
+              <div class="flex flex-wrap items-center gap-1.5">
+                <button type="button" onclick="duoApp.toggleInputVisibility()" id="toggleVisBtn"
+                        class="pop-btn-sm btn-surface px-2.5 py-1.5 text-xs font-display font-extrabold flex items-center gap-1">
+                  <span id="visEmoji">👁️</span>
+                  <span id="visLabel">Show</span>
+                </button>
+                <button type="button" onclick="duoApp.loadSamplePassword()"
+                        class="pop-btn-sm accent-blue px-2.5 py-1.5 text-xs font-display font-extrabold flex items-center gap-1">
+                  <span>🎲</span>
+                  <span>Sample</span>
+                </button>
+              </div>
+
+              <!-- Auto-Upgrade Weak Password -->
+              <button type="button" id="autoUpgradeBtn" onclick="duoApp.autoUpgradeCurrentPassword()"
+                      class="pop-btn-sm accent-yellow px-3 py-1.5 text-xs font-display font-extrabold flex items-center gap-1">
+                <span>⚡</span>
+                <span id="autoUpgradeLabel">Auto-Upgrade</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Visual Score & Segmented 10-Block Gauge Card -->
+          <div class="s-card p-4 space-y-3.5">
+            <div class="flex flex-wrap items-center justify-between gap-3">
+              
+              <!-- Mood Emoji + Verdict Grade -->
+              <div class="flex items-center gap-3">
+                <div id="moodFaceBox" class="w-14 h-14 rounded-2xl accent-yellow border-[2.5px] border-[#0f172a] shadow-[3px_3px_0px_#0f172a] flex items-center justify-center text-3xl select-none flex-shrink-0">
+                  😴
+                </div>
+                <div>
+                  <div class="text-[10px] font-mono font-extrabold uppercase tracking-wider t-muted">
+                    SECURITY VERDICT
+                  </div>
+                  <div id="verdictTitle" class="font-display font-extrabold text-base sm:text-lg t-primary leading-tight">
+                    Awaiting Password...
+                  </div>
+                  <!-- 5-Star Rating Bar -->
+                  <div id="starBar" class="flex items-center gap-1 text-base mt-0.5">
+                    <span class="t-muted">★</span>
+                    <span class="t-muted">★</span>
+                    <span class="t-muted">★</span>
+                    <span class="t-muted">★</span>
+                    <span class="t-muted">★</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Circular SVG Ring + Score Points Badge -->
+              <div class="flex items-center gap-2.5 s-elevated px-3 py-2 rounded-xl shadow-[2.5px_2.5px_0px_var(--shadow-color)]">
+                <div class="relative w-12 h-12 flex items-center justify-center flex-shrink-0">
+                  <svg class="w-12 h-12 -rotate-90" viewBox="0 0 60 60">
+                    <circle cx="30" cy="30" r="24" fill="none" stroke="var(--border-subtle)" stroke-width="6"></circle>
+                    <circle id="scoreRingCircle" cx="30" cy="30" r="24" fill="none" stroke="var(--accent-pink)"
+                            stroke-width="6" stroke-linecap="round"
+                            stroke-dasharray="150.8" stroke-dashoffset="150.8"
+                            style="transition: stroke-dashoffset 0.35s ease, stroke 0.35s ease;"></circle>
+                  </svg>
+                  <span id="scoreRingPct" class="absolute font-mono font-extrabold text-[11px] t-primary">0%</span>
+                </div>
+                <div class="text-right">
+                  <div class="text-[10px] font-mono font-extrabold t-muted uppercase">SCORE</div>
+                  <div class="font-mono font-extrabold text-xl sm:text-2xl t-primary leading-none">
+                    <span id="scoreNumber">0</span><span class="text-xs t-muted">/100</span>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- 10-Block Neo-Brutalist Segmented Strength Meter -->
+            <div class="space-y-1">
+              <div id="segmentedMeter" class="grid grid-cols-10 gap-1">
+                <div class="meter-seg"></div>
+                <div class="meter-seg"></div>
+                <div class="meter-seg"></div>
+                <div class="meter-seg"></div>
+                <div class="meter-seg"></div>
+                <div class="meter-seg"></div>
+                <div class="meter-seg"></div>
+                <div class="meter-seg"></div>
+                <div class="meter-seg"></div>
+                <div class="meter-seg"></div>
+              </div>
+              <div class="flex justify-between text-[10px] font-mono font-bold t-muted px-0.5">
+                <span>0 (Napkin)</span>
+                <span>50 (Patrol)</span>
+                <span>100 (Cosmic)</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- =============================================================== -->
+          <!-- FEATURE A: 🔬 "PASSWORD X-RAY SCANNER" (CHARACTER INSPECTOR)    -->
+          <!-- =============================================================== -->
+          <div class="s-card p-4 space-y-3">
+            <div class="flex flex-wrap items-center justify-between gap-2 border-b-2 border-[var(--border-subtle)] pb-2">
+              <div class="flex items-center gap-2">
+                <span class="text-base">🔬</span>
+                <div>
+                  <h3 class="font-display font-extrabold text-xs uppercase tracking-wider t-primary">
+                    PASSWORD X-RAY SCANNER
+                  </h3>
+                  <p class="text-[11px] font-medium t-secondary">
+                    Tap or hover any tile to inspect boosts or weak traps
+                  </p>
+                </div>
+              </div>
+              <span id="xraySummaryBadge" class="s-elevated px-2.5 py-0.5 rounded-full font-mono text-[10px] font-extrabold t-primary shadow-[2px_2px_0px_var(--shadow-color)]">
+                0 Strong • 0 Weak
+              </span>
+            </div>
+
+            <!-- Interactive Character Pill Strip -->
+            <div id="xrayPillContainer" class="min-h-[52px] max-h-[140px] overflow-y-auto s-elevated p-2.5 flex flex-wrap items-center gap-1.5">
+              <span class="text-xs font-mono font-bold t-muted">
+                Type a password above to X-Ray every character...
+              </span>
+            </div>
+
+            <!-- Forensic Inspector Readout Bar -->
+            <div id="xrayInspectorBar" class="tint-blue rounded-xl px-3 py-2 text-[11px] font-mono font-bold flex flex-wrap items-center justify-between gap-1.5">
+              <span id="xrayInspectorText" class="break-words">🔍 Forensic Lens Ready: Tap any glyph pill above for full diagnostics.</span>
+              <span id="xrayPenaltyBadge" class="hidden accent-danger px-2 py-0.5 rounded border border-[#0f172a] text-[10px] font-extrabold flex-shrink-0">
+                ⚠️ Trap Found
+              </span>
+            </div>
+
+            <!-- Color-Coded Legend -->
+            <div class="flex flex-wrap items-center gap-1.5 text-[10px] font-mono font-extrabold">
+              <span class="px-2 py-0.5 rounded border border-[#0f172a] accent-danger">⚠️ Weak/Trap</span>
+              <span class="px-2 py-0.5 rounded border border-[#0f172a] accent-pink">!@# Symbol</span>
+              <span class="px-2 py-0.5 rounded border border-[#0f172a] accent-blue">0-9 Digit</span>
+              <span class="px-2 py-0.5 rounded border border-[#0f172a] accent-yellow">A-Z Upper</span>
+              <span class="px-2 py-0.5 rounded border border-[#0f172a] accent-mint">a-z Lower</span>
+            </div>
+          </div>
+
+          <!-- =============================================================== -->
+          <!-- FEATURE #3: "PICK YOUR VILLAIN" CRACK-TIME ARENA                -->
+          <!-- =============================================================== -->
+          <div class="s-card p-4 space-y-3.5">
+            <div class="flex flex-wrap items-center justify-between gap-2 border-b-2 border-[var(--border-subtle)] pb-2.5">
+              <div>
+                <h3 class="font-display font-extrabold text-xs sm:text-sm uppercase tracking-wide t-primary flex items-center gap-1.5">
+                  <span>⚔️</span> VILLAIN CRACK-TIME ARENA
+                </h3>
+                <p class="text-[11px] t-secondary font-medium">
+                  Survival time against Gotham's 3 cyber-bosses
+                </p>
+              </div>
+              <span id="villainSummaryBadge" class="accent-yellow border-2 border-[#0f172a] px-2.5 py-0.5 rounded-full font-mono text-[11px] font-extrabold shadow-[2px_2px_0px_#0f172a]">
+                0 / 3 Defeated
+              </span>
+            </div>
+
+            <!-- 3 Villain Boss Cards -->
+            <div class="space-y-2.5">
+              
+              <!-- BOSS 1: THE RIDDLER (EASY BOSS) -->
+              <div class="s-elevated p-3 space-y-1.5">
+                <div class="flex flex-wrap items-center justify-between gap-2">
+                  <div class="flex items-center gap-2.5">
+                    <div class="w-9 h-9 rounded-xl accent-mint border-2 border-[#0f172a] shadow-[2px_2px_0px_#0f172a] flex items-center justify-center text-lg flex-shrink-0 font-bold">
+                      ❓
+                    </div>
+                    <div>
+                      <div class="flex flex-wrap items-center gap-1.5">
+                        <span class="font-display font-extrabold text-xs t-primary">🟢 EASY: THE RIDDLER</span>
+                        <span id="riddlerBadge" class="text-[9px] font-mono font-extrabold uppercase px-1.5 py-0.5 rounded border border-[#0f172a] accent-yellow">
+                          STANDBY
+                        </span>
+                      </div>
+                      <div class="text-[10px] font-mono t-secondary">
+                        Laptop Rig • 10M guesses/sec
+                      </div>
+                    </div>
+                  </div>
+                  <div class="text-right">
+                    <div id="riddlerTime" class="font-mono font-extrabold text-xs sm:text-sm t-primary">Instant</div>
+                  </div>
+                </div>
+                <div id="riddlerQuip" class="text-[11px] font-semibold t-secondary italic">"Riddle me this: where is your password?"</div>
+                <div class="w-full h-2.5 s-card-flat rounded-full overflow-hidden p-0">
+                  <div id="riddlerBar" class="h-full bg-emerald-400 transition-all duration-300" style="width: 0%;"></div>
+                </div>
+              </div>
+
+              <!-- BOSS 2: TWO-FACE (MEDIUM BOSS) -->
+              <div class="s-elevated p-3 space-y-1.5">
+                <div class="flex flex-wrap items-center justify-between gap-2">
+                  <div class="flex items-center gap-2.5">
+                    <div class="w-9 h-9 rounded-xl accent-yellow border-2 border-[#0f172a] shadow-[2px_2px_0px_#0f172a] flex items-center justify-center text-lg flex-shrink-0 font-bold">
+                      🪙
+                    </div>
+                    <div>
+                      <div class="flex flex-wrap items-center gap-1.5">
+                        <span class="font-display font-extrabold text-xs t-primary">🟡 MEDIUM: TWO-FACE</span>
+                        <span id="twofaceBadge" class="text-[9px] font-mono font-extrabold uppercase px-1.5 py-0.5 rounded border border-[#0f172a] accent-yellow">
+                          STANDBY
+                        </span>
+                      </div>
+                      <div class="text-[10px] font-mono t-secondary">
+                        GPU Syndicate • 10B guesses/sec
+                      </div>
+                    </div>
+                  </div>
+                  <div class="text-right">
+                    <div id="twofaceTime" class="font-mono font-extrabold text-xs sm:text-sm t-primary">Instant</div>
+                  </div>
+                </div>
+                <div id="twofaceQuip" class="text-[11px] font-semibold t-secondary italic">"Heads I crack it, tails you lose!"</div>
+                <div class="w-full h-2.5 s-card-flat rounded-full overflow-hidden p-0">
+                  <div id="twofaceBar" class="h-full bg-amber-400 transition-all duration-300" style="width: 0%;"></div>
+                </div>
+              </div>
+
+              <!-- BOSS 3: THE JOKER (TOP BOSS) -->
+              <div class="s-elevated p-3 space-y-1.5">
+                <div class="flex flex-wrap items-center justify-between gap-2">
+                  <div class="flex items-center gap-2.5">
+                    <div class="w-9 h-9 rounded-xl accent-pink border-2 border-[#0f172a] shadow-[2px_2px_0px_#0f172a] flex items-center justify-center text-lg flex-shrink-0 font-bold">
+                      🃏
+                    </div>
+                    <div>
+                      <div class="flex flex-wrap items-center gap-1.5">
+                        <span class="font-display font-extrabold text-xs t-primary">🔴 TOP BOSS: THE JOKER</span>
+                        <span id="jokerBadge" class="text-[9px] font-mono font-extrabold uppercase px-1.5 py-0.5 rounded border border-[#0f172a] accent-yellow">
+                          STANDBY
+                        </span>
+                      </div>
+                      <div class="text-[10px] font-mono t-secondary">
+                        Chaos Supercluster • 1T guesses/sec
+                      </div>
+                    </div>
+                  </div>
+                  <div class="text-right">
+                    <div id="jokerTime" class="font-mono font-extrabold text-xs sm:text-sm t-primary">Instant</div>
+                  </div>
+                </div>
+                <div id="jokerQuip" class="text-[11px] font-semibold t-secondary italic">"Why so serious? Type something!"</div>
+                <div class="w-full h-2.5 s-card-flat rounded-full overflow-hidden p-0">
+                  <div id="jokerBar" class="h-full bg-rose-500 transition-all duration-300" style="width: 0%;"></div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Hackman & Robin Live Comic Banter Box (Funny, Kind, Zero Abuse) -->
+          <div class="s-card p-4 space-y-3">
+            <div class="flex flex-wrap items-center justify-between gap-2 border-b-2 border-[var(--border-subtle)] pb-2">
+              <div class="flex items-center gap-2">
+                <span class="accent-yellow border-2 border-[#0f172a] px-2 py-0.5 rounded-md font-mono font-extrabold text-[11px]">
+                  DUO BANTER 🎭
+                </span>
+                <span id="banterBracketTag" class="font-mono text-[11px] font-bold t-secondary">
+                  Bracket: Idle
+                </span>
+              </div>
+              <button type="button" onclick="duoApp.cycleBanterRemark()"
+                      class="pop-btn-sm accent-yellow px-2.5 py-1 text-[11px] font-display font-extrabold flex items-center gap-1">
+                <span>💬</span>
+                <span>+ Remark</span>
+              </button>
+            </div>
+
+            <div class="space-y-2.5">
+              <!-- Hackman Speech Row -->
+              <div class="flex items-start gap-2.5 tint-blue p-3 rounded-xl shadow-[2px_2px_0px_var(--shadow-color)]">
+                <div class="w-10 h-10 rounded-xl accent-blue border-2 border-[#0f172a] flex items-center justify-center flex-shrink-0 shadow-[2px_2px_0px_#0f172a]" title="Hackman">
+                  <svg class="w-6 h-6 text-[#0f172a]" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M3 4l4 5h10l4-5v9c0 4.5-4 8-9 8s-9-3.5-9-8V4zm5 8.5l2.5 1.5v-2L8 12.5zm8 0l-2.5-.5v2L16 12.5z"/>
+                  </svg>
+                </div>
+                <div class="text-xs min-w-0">
+                  <div class="font-display font-extrabold uppercase tracking-wide text-[11px] t-primary mb-0.5">
+                    HACKMAN (Cyber Detective)
+                  </div>
+                  <p id="hackmanSpeech" class="font-semibold t-primary leading-relaxed break-words">
+                    "Step right up to the Bat-Scanner! Type any password above or try the 15-Second Joker Defusal Challenge in the center!"
+                  </p>
+                </div>
+              </div>
+
+              <!-- Robin Speech Row -->
+              <div class="flex items-start gap-2.5 tint-pink p-3 rounded-xl shadow-[2px_2px_0px_var(--shadow-color)]">
+                <div class="w-10 h-10 rounded-xl accent-pink border-2 border-[#0f172a] flex items-center justify-center flex-shrink-0 shadow-[2px_2px_0px_#0f172a]" title="Robin">
+                  <svg class="w-6 h-6 text-[#0f172a]" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M2 9c2-3 6-4 10-2 4-2 8-1 10 2-1 5-5 7-10 5-5 2-9 0-10-5zm4.5 1.5c1.2 0 2.2-.7 2.5-1.5-.8-.5-2-.5-3 0 .3.8 1.3 1.5 2.5 1.5zm11 0c1.2 0 2.2-.7 2.5-1.5-1-.5-2.2-.5-3 0 .3.8 1.3 1.5 2.5 1.5z"/>
+                  </svg>
+                </div>
+                <div class="text-xs min-w-0">
+                  <div class="font-display font-extrabold uppercase tracking-wide text-[11px] t-primary mb-0.5">
+                    ROBIN (Entropy Wonder)
+                  </div>
+                  <p id="robinSpeech" class="font-semibold t-primary leading-relaxed break-words">
+                    "Holy blank canvas, Hackman! Click 'Sample' above to test our Villain Arena right away!"
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Cryptographic Security Breakdown: 3 Metric Pills + 6 Checkpoints -->
+          <div class="space-y-3">
+            <h3 class="font-display font-extrabold text-xs uppercase tracking-wider t-primary flex items-center gap-1.5">
+              <span>📊</span> Telemetry &amp; 6-Point Inspection
+            </h3>
+
+            <!-- 3 Metric Pills -->
+            <div class="grid grid-cols-3 gap-2">
+              <div class="s-elevated p-2.5 shadow-[2px_2px_0px_var(--shadow-color)]">
+                <div class="text-[10px] font-bold t-secondary truncate">🧮 Entropy</div>
+                <div id="metricEntropy" class="font-mono font-extrabold text-xs sm:text-sm t-primary mt-0.5">0.0 bits</div>
+              </div>
+              <div class="s-elevated p-2.5 shadow-[2px_2px_0px_var(--shadow-color)]">
+                <div class="text-[10px] font-bold t-secondary truncate">🔠 Pool Size</div>
+                <div id="metricPool" class="font-mono font-extrabold text-xs sm:text-sm t-primary mt-0.5">0 glyphs</div>
+              </div>
+              <div class="s-elevated p-2.5 shadow-[2px_2px_0px_var(--shadow-color)]">
+                <div class="text-[10px] font-bold t-secondary truncate">🛡️ Posture</div>
+                <div id="metricResistance" class="font-display font-extrabold text-xs t-primary mt-0.5 truncate">Idle</div>
+              </div>
+            </div>
+
+            <!-- Interactive 6-Requirement Checklist -->
+            <div class="grid grid-cols-2 gap-2 text-xs font-display font-bold">
+              <div id="reqLen" class="s-elevated p-2.5 flex items-center gap-2 t-secondary transition-all">
+                <span class="req-icon text-sm">⚪</span>
+                <span class="truncate">12+ Chars</span>
+              </div>
+              <div id="reqUpper" class="s-elevated p-2.5 flex items-center gap-2 t-secondary transition-all">
+                <span class="req-icon text-sm">⚪</span>
+                <span class="truncate">Uppercase (A-Z)</span>
+              </div>
+              <div id="reqLower" class="s-elevated p-2.5 flex items-center gap-2 t-secondary transition-all">
+                <span class="req-icon text-sm">⚪</span>
+                <span class="truncate">Lowercase (a-z)</span>
+              </div>
+              <div id="reqNum" class="s-elevated p-2.5 flex items-center gap-2 t-secondary transition-all">
+                <span class="req-icon text-sm">⚪</span>
+                <span class="truncate">Numbers (0-9)</span>
+              </div>
+              <div id="reqSym" class="s-elevated p-2.5 flex items-center gap-2 t-secondary transition-all">
+                <span class="req-icon text-sm">⚪</span>
+                <span class="truncate">Symbols (!@#$)</span>
+              </div>
+              <div id="reqClean" class="s-elevated p-2.5 flex items-center gap-2 t-secondary transition-all">
+                <span class="req-icon text-sm">⚪</span>
+                <span class="truncate">No Traps</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- =================================================================== -->
+      <!-- COLUMN 2 (CENTER): 02 // JOKER VAULT DEFUSAL CHALLENGE              -->
+      <!-- Positioned right between the Analyser & Generator!                  -->
+      <!-- =================================================================== -->
+      <section id="challengeWindow" class="lg:col-span-12 xl:col-span-4 order-2 s-window overflow-hidden flex flex-col">
+        
+        <!-- Window Title Bar (Vibrant Orange/Purple Pop Header) -->
+        <div class="accent-orange border-b-[2.5px] border-[#0f172a] px-4 py-3 flex items-center justify-between gap-2">
+          <div class="flex items-center gap-2 min-w-0">
+            <span class="bg-[#0f172a] text-white font-mono font-extrabold text-xs px-2 py-0.5 rounded-md flex-shrink-0">02</span>
+            <h2 class="font-display font-extrabold text-xs sm:text-sm tracking-wide uppercase t-on-accent truncate">
+              JOKER VAULT DEFUSAL CHALLENGE (15s MINI-GAME)
+            </h2>
+          </div>
+          <div class="flex items-center gap-1.5 flex-shrink-0">
+            <span id="defusalBestBadge" class="accent-mint border-2 border-[#0f172a] px-2 py-0.5 rounded-full font-mono text-[10px] font-extrabold">
+              🏆 Best: --
+            </span>
+            <span id="defusalStreakBadge" class="accent-yellow border-2 border-[#0f172a] px-2 py-0.5 rounded-full font-mono text-[10px] font-extrabold">
+              🔥 Wins: 0
+            </span>
+          </div>
+        </div>
+
+        <div id="defusalGameCard" class="p-4 sm:p-5 space-y-4">
+
+          <!-- Challenge Intro & Start/Abort Controls -->
+          <div class="s-card p-4 space-y-3.5">
+            <div class="flex items-start justify-between gap-3">
+              <div class="flex items-center gap-3">
+                <div class="w-12 h-12 rounded-2xl accent-pink border-2 border-[#0f172a] shadow-[2.5px_2.5px_0px_#0f172a] flex items-center justify-center text-2xl flex-shrink-0">
+                  💣
+                </div>
+                <div>
+                  <h3 class="font-display font-extrabold text-sm sm:text-base uppercase t-primary leading-tight">
+                    BEAT THE CLOCK: LAUGHING GAS LOCK!
+                  </h3>
+                  <p class="text-xs font-semibold t-secondary mt-0.5">
+                    Type a password scoring <strong>85+ pts</strong> with <strong>0 Weak Traps</strong> before the 15.0s fuse runs out!
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Big Start / Abort Action Row -->
+            <div class="flex flex-wrap items-center gap-2">
+              <button type="button" id="startDefusalBtn" onclick="duoApp.startDefusalChallenge()"
+                      class="pop-btn accent-yellow flex-1 py-3 px-4 font-display font-extrabold text-xs sm:text-sm flex items-center justify-center gap-2">
+                <span class="text-lg">🕹️</span>
+                <span id="startDefusalLabel">START 15s DEFUSAL CHALLENGE</span>
+              </button>
+              <button type="button" id="cancelDefusalBtn" onclick="duoApp.stopDefusalChallenge('aborted')"
+                      class="hidden pop-btn accent-danger py-3 px-4 font-display font-extrabold text-xs sm:text-sm">
+                ✕ Abort
+              </button>
+            </div>
+          </div>
+
+          <!-- Dedicated Challenge Arena & Live Input (No scrolling away required on Mobile/Tablet/Laptop!) -->
+          <div id="defusalArenaPanel" class="s-card p-4 space-y-4">
+            
+            <!-- Timer & Fuse Bar -->
+            <div class="space-y-2">
+              <div class="flex flex-wrap items-center justify-between gap-2">
+                <span class="font-mono text-xs font-extrabold uppercase t-secondary flex items-center gap-1.5">
+                  <span>🔥</span> LIVE FUSE COUNTDOWN:
+                </span>
+                <span id="defusalTimerBadge" class="font-mono text-base sm:text-lg font-extrabold px-3.5 py-1 rounded-xl border-2 border-[#0f172a] accent-yellow shadow-[2px_2px_0px_#0f172a]">
+                  ⏱️ 15.0s
+                </span>
+              </div>
+
+              <!-- 15.0s Fuse Progress Bar -->
+              <div class="w-full h-4 s-card-flat rounded-full overflow-hidden p-0">
+                <div id="defusalTimeBar" class="h-full bg-emerald-400 transition-all duration-100" style="width: 100%;"></div>
+              </div>
+            </div>
+
+            <!-- Joker's Active Rule Banner -->
+            <div class="tint-purple rounded-xl p-3 text-xs font-display font-extrabold flex items-start gap-2 shadow-[2px_2px_0px_var(--shadow-color)]">
+              <span class="text-base flex-shrink-0">🃏</span>
+              <span id="defusalRuleText" class="leading-snug">
+                Joker's Rule: Hit Score 85+, 14+ characters, and 0 X-Ray weak traps before the 15.0s fuse runs out!
+              </span>
+            </div>
+
+            <!-- DEDICATED CHALLENGE PASSWORD INPUT (Syncs live with Analyser!) -->
+            <div class="space-y-1.5">
+              <div class="flex items-center justify-between text-xs font-display font-extrabold">
+                <label for="defusalInput" class="t-primary flex items-center gap-1.5">
+                  <span>⌨️</span> Type Defusal Code Here:
+                </label>
+                <span class="text-[11px] font-mono accent-pink px-2 py-0.5 rounded border border-[#0f172a]">
+                  🚫 Paste Blocked
+                </span>
+              </div>
+              <input type="text" id="defusalInput" autocomplete="off" spellcheck="false"
+                     placeholder="Press START above, or type here to practice..."
+                     class="w-full h-12 sm:h-13 s-input rounded-xl px-3.5 font-mono text-sm sm:text-base font-extrabold">
+            </div>
+
+            <!-- Live 3-Requirement Mini Telemetry Grid (Visible right below the challenge box) -->
+            <div class="grid grid-cols-3 gap-2 text-center">
+              <div id="defusalCheckScore" class="s-elevated p-2.5 flex flex-col items-center justify-center">
+                <span class="text-[10px] font-mono font-bold t-secondary uppercase">1. Score 85+</span>
+                <span id="defusalLiveScoreVal" class="font-mono font-extrabold text-sm sm:text-base t-primary mt-0.5">0 / 85</span>
+              </div>
+              <div id="defusalCheckLen" class="s-elevated p-2.5 flex flex-col items-center justify-center">
+                <span class="text-[10px] font-mono font-bold t-secondary uppercase">2. Min Length</span>
+                <span id="defusalLiveLenVal" class="font-mono font-extrabold text-sm sm:text-base t-primary mt-0.5">0 / 14</span>
+              </div>
+              <div id="defusalCheckClean" class="s-elevated p-2.5 flex flex-col items-center justify-center">
+                <span class="text-[10px] font-mono font-bold t-secondary uppercase">3. X-Ray Traps</span>
+                <span id="defusalLiveTrapsVal" class="font-mono font-extrabold text-sm sm:text-base t-primary mt-0.5">0 Traps</span>
+              </div>
+            </div>
+
+            <!-- Live Status / Win / Lose Banner -->
+            <div id="defusalStatusBanner" class="s-elevated px-3.5 py-2.5 text-xs font-mono font-bold t-secondary flex flex-wrap items-center justify-between gap-2">
+              <span>Press "🕹️ START 15s DEFUSAL CHALLENGE" to arm the lock!</span>
+              <span class="font-extrabold t-primary">Ready</span>
+            </div>
+
+          </div>
+
+          <!-- Quick Pro-Tips Card for Beating The Joker -->
+          <div class="tint-yellow rounded-xl p-3.5 space-y-1.5 shadow-[2.5px_2.5px_0px_var(--shadow-color)]">
+            <div class="font-display font-extrabold text-xs uppercase t-primary flex items-center gap-1.5">
+              <span>💡</span> Robin's Speed-Defusal Formula:
+            </div>
+            <p class="text-xs font-semibold t-secondary leading-relaxed">
+              Combine <strong>2 capitalized words</strong> + <strong>2 symbols</strong> + <strong>2 random digits</strong> (e.g., <code>Falcon!Velvet#84</code>) — avoids keyboard walks like <code>qwerty</code> or sequences like <code>123</code>!
+            </p>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- =================================================================== -->
+      <!-- COLUMN 3 (RIGHT): 03 // SECRET PASSWORD GENERATOR                   -->
+      <!-- =================================================================== -->
+      <section id="generatorWindow" class="lg:col-span-6 xl:col-span-4 order-3 s-window overflow-hidden flex flex-col">
+        
+        <!-- Window Title Bar (Sunny Yellow Pop Header) -->
+        <div class="accent-yellow border-b-[2.5px] border-[#0f172a] px-4 py-3 flex items-center justify-between gap-2">
+          <div class="flex items-center gap-2 min-w-0">
+            <span class="bg-[#0f172a] text-white font-mono font-extrabold text-xs px-2 py-0.5 rounded-md flex-shrink-0">03</span>
+            <h2 class="font-display font-extrabold text-xs sm:text-sm tracking-wide uppercase t-on-accent truncate">
+              SECRET PASSWORD GENERATOR
+            </h2>
+          </div>
+          <div class="flex items-center space-x-1.5 font-mono font-bold text-xs flex-shrink-0">
+            <span class="w-5 h-5 rounded bg-white/90 text-[#0f172a] border-2 border-[#0f172a] flex items-center justify-center leading-none">—</span>
+            <button type="button" onclick="duoApp.generatePassword(true)" title="Quick Roll"
+                    class="w-5 h-5 rounded accent-mint border-2 border-[#0f172a] flex items-center justify-center leading-none">🎲</button>
+          </div>
+        </div>
+
+        <div class="p-4 sm:p-5 space-y-5">
+
+          <!-- Zero-Storage Security Guarantee Banner -->
+          <div class="tint-green rounded-xl px-3.5 py-2.5 flex items-center justify-between gap-2 shadow-[2.5px_2.5px_0px_var(--shadow-color)]">
+            <div class="flex items-center gap-2 text-xs font-display font-extrabold t-primary">
+              <span class="text-base flex-shrink-0">🔒</span>
+              <span>Client-Secret Only — Never Saved or Logged</span>
+            </div>
+            <span id="genEntropyBadge" class="accent-yellow border-2 border-[#0f172a] px-2 py-0.5 rounded-full font-mono text-[11px] font-extrabold flex-shrink-0">
+              ~105 bits
+            </span>
+          </div>
+
+          <!-- Generated Password Display Vault Card -->
+          <div class="s-card p-4 space-y-3.5">
+            <div class="flex flex-wrap items-center justify-between gap-2 text-[11px] font-mono font-extrabold t-secondary">
+              <span>EPHEMERAL SECRET KEY:</span>
+              <span id="cloakCountdownText" class="accent-yellow px-2 py-0.5 rounded border border-[#0f172a]">
+                🛡️ Screen Active
+              </span>
+            </div>
+
+            <!-- Deep Dark Vault Box (Always dark background so white/cyan/pink glyphs pop in every theme) -->
+            <div id="generatedDisplayBox"
+                 onclick="duoApp.revealIfCloaked()"
+                 style="background-color: var(--bg-vault);"
+                 class="min-h-[68px] border-[2.5px] border-[var(--border-ink)] rounded-xl p-3.5 flex items-center justify-between gap-2 shadow-inner cursor-pointer">
+              <div id="generatedPasswordText"
+                   class="font-mono font-extrabold text-base sm:text-lg tracking-wider break-all select-all leading-snug">
+                <!-- Populated with color-coded spans by JS -->
+              </div>
+            </div>
+
+            <!-- ============================================================= -->
+            <!-- FEATURE #5: SELF-DESTRUCTING CLIPBOARD COUNTDOWN BANNER       -->
+            <!-- ============================================================= -->
+            <div id="clipboardDestructBar" class="hidden tint-orange rounded-xl p-2.5 flex flex-wrap items-center justify-between gap-2 shadow-[2px_2px_0px_var(--shadow-color)]">
+              <div class="flex items-center gap-1.5 text-xs font-display font-extrabold t-primary">
+                <span class="text-base animate-bounce">💣</span>
+                <span>CLIPBOARD WIPES IN <span id="clipTimerCount" class="font-mono underline">30s</span></span>
+              </div>
+              <button type="button" onclick="duoApp.scrubClipboardNow()"
+                      class="pop-btn-sm accent-orange px-2.5 py-1 font-display font-extrabold text-[11px]">
+                🧹 Wipe Now
+              </button>
+            </div>
+
+            <!-- Color Legend -->
+            <div class="flex flex-wrap items-center justify-between gap-2 text-[11px] font-mono font-bold t-secondary px-0.5">
+              <div class="flex items-center gap-2.5">
+                <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-white border border-slate-700 inline-block"></span> A-Z</span>
+                <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-[#38bdf8] border border-slate-700 inline-block"></span> 0-9</span>
+                <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-[#ff7eb6] border border-slate-700 inline-block"></span> !@#</span>
+              </div>
+              <span class="text-[10px] t-muted">Tap vault to reveal</span>
+            </div>
+
+            <!-- Primary Action Bar (3 Tactile Buttons) -->
+            <div class="grid grid-cols-3 gap-2 pt-0.5">
+              <button type="button" onclick="duoApp.generatePassword(true)"
+                      class="pop-btn accent-yellow font-display font-extrabold text-xs py-2.5 px-2 flex items-center justify-center gap-1">
+                <span>🎲</span>
+                <span>RE-ROLL</span>
+              </button>
+
+              <button type="button" onclick="duoApp.copyMainPassword()" id="copyMainBtn"
+                      class="pop-btn accent-mint font-display font-extrabold text-xs py-2.5 px-2 flex items-center justify-center gap-1">
+                <span id="copyMainEmoji">📋</span>
+                <span id="copyMainLabel">COPY</span>
+              </button>
+
+              <button type="button" onclick="duoApp.sendToAnalyser()"
+                      class="pop-btn accent-blue font-display font-extrabold text-xs py-2.5 px-2 flex items-center justify-center gap-1">
+                <span>🔍</span>
+                <span>INSPECT</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Step 1: 5 Generator Mode Tabs -->
+          <div class="space-y-2.5">
+            <label class="font-display font-extrabold text-xs uppercase tracking-wider t-primary flex items-center gap-1.5">
+              <span>🎛️</span> Step 1: Select Generator Mode
+            </label>
+
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-2">
+              <button type="button" onclick="duoApp.setGeneratorMode('cipher')" id="tabMode_cipher"
+                      class="pop-btn-sm accent-yellow p-2.5 text-left flex items-center gap-2">
+                <span class="text-lg">🎲</span>
+                <span class="font-display font-extrabold text-xs leading-tight">Random Cipher</span>
+              </button>
+
+              <button type="button" onclick="duoApp.setGeneratorMode('phrase')" id="tabMode_phrase"
+                      class="pop-btn-sm btn-surface p-2.5 text-left flex items-center gap-2">
+                <span class="text-lg">🧩</span>
+                <span class="font-display font-extrabold text-xs leading-tight">Phrase Fortress</span>
+              </button>
+
+              <button type="button" onclick="duoApp.setGeneratorMode('words')" id="tabMode_words"
+                      class="pop-btn-sm btn-surface p-2.5 text-left flex items-center gap-2">
+                <span class="text-lg">📖</span>
+                <span class="font-display font-extrabold text-xs leading-tight">Comic Words</span>
+              </button>
+
+              <button type="button" onclick="duoApp.setGeneratorMode('leet')" id="tabMode_leet"
+                      class="pop-btn-sm btn-surface p-2.5 text-left flex items-center gap-2">
+                <span class="text-lg">🦸‍♂️</span>
+                <span class="font-display font-extrabold text-xs leading-tight">Leet Hero</span>
+              </button>
+
+              <button type="button" onclick="duoApp.setGeneratorMode('pin')" id="tabMode_pin"
+                      class="pop-btn-sm btn-surface p-2.5 text-left flex items-center gap-2 col-span-2 sm:col-span-2">
+                <span class="text-lg">🔢</span>
+                <span class="font-display font-extrabold text-xs leading-tight">Vault PIN (6–16 Digits)</span>
+              </button>
+            </div>
+
+            <!-- 1-Line Mode Helper Banner -->
+            <div class="tint-blue rounded-xl px-3 py-2 text-xs font-semibold flex items-start gap-1.5 shadow-[2px_2px_0px_var(--shadow-color)]">
+              <span class="font-extrabold flex-shrink-0">💡</span>
+              <span id="modeDescriptionText">Maximum mathematical security using a cryptographic mix of letters, numbers, and symbols.</span>
+            </div>
+          </div>
+
+          <!-- =============================================================== -->
+          <!-- FEATURE #4: "TURN MY PHRASE INTO A FORTRESS" PANEL              -->
+          <!-- =============================================================== -->
+          <div id="phraseFortressPanel" class="hidden s-card p-4 space-y-3">
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <div>
+                <h3 class="font-display font-extrabold text-xs sm:text-sm t-primary flex items-center gap-1.5">
+                  <span>🧩</span> Sentence-to-Fortress Transformer
+                </h3>
+                <p class="text-[11px] t-secondary font-medium">
+                  Type a sentence you'll never forget—we turn its initials into a cosmic key!
+                </p>
+              </div>
+              <button type="button" onclick="duoApp.loadSamplePhrase()"
+                      class="pop-btn-sm accent-blue px-2.5 py-1 font-display font-extrabold text-[11px]">
+                ✨ Sample Phrase
+              </button>
+            </div>
+
+            <input type="text" id="phraseSeedInput"
+                   value="I love eating 3 slices of pizza on Fridays at 8!"
+                   oninput="duoApp.generatePassword(false); duoApp.generateBulkBatch();"
+                   placeholder="Type a memorable sentence..."
+                   class="w-full s-input rounded-xl px-3 py-2 font-sans font-bold text-xs sm:text-sm">
+
+            <!-- Visual Word-by-Word Memory Map -->
+            <div class="space-y-1.5">
+              <div class="text-[10px] font-mono font-extrabold uppercase t-secondary">
+                🧠 WORD-BY-WORD MEMORY MAP:
+              </div>
+              <div id="phraseBreakdownPills" class="flex flex-wrap gap-1.5 max-h-[120px] overflow-y-auto p-0.5">
+                <!-- Populated dynamically by JS -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 2: Length & Character Pool Customization Controls -->
+          <div class="s-card p-4 space-y-4">
+            <h3 class="font-display font-extrabold text-xs uppercase tracking-wider t-primary flex items-center gap-1.5">
+              <span>⚙️</span> Step 2: Parameters &amp; Privacy Guards
+            </h3>
+
+            <!-- Length Slider + Step Buttons + Quick Select Pills (Used in Cipher & PIN modes) -->
+            <div id="lengthControlSection" class="space-y-2.5">
+              <div class="flex flex-wrap items-center justify-between gap-2">
+                <div class="font-display font-extrabold text-xs sm:text-sm t-primary">
+                  Length: <span id="lengthValueDisplay" class="font-mono font-extrabold text-sm accent-yellow px-2 py-0.5 rounded border-2 border-[#0f172a]">16</span> <span id="lengthUnitLabel">chars</span>
+                </div>
+
+                <!-- Quick-Select Length Pills -->
+                <div class="flex items-center gap-1">
+                  <button type="button" onclick="duoApp.setLength(12)" class="pop-btn-sm btn-surface px-2 py-0.5 font-mono text-[11px] font-extrabold">12</button>
+                  <button type="button" onclick="duoApp.setLength(16)" class="pop-btn-sm btn-surface px-2 py-0.5 font-mono text-[11px] font-extrabold">16</button>
+                  <button type="button" onclick="duoApp.setLength(24)" class="pop-btn-sm btn-surface px-2 py-0.5 font-mono text-[11px] font-extrabold">24</button>
+                  <button type="button" onclick="duoApp.setLength(32)" class="pop-btn-sm btn-surface px-2 py-0.5 font-mono text-[11px] font-extrabold">32</button>
+                </div>
+              </div>
+
+              <!-- Slider with - and + Step Buttons -->
+              <div class="flex items-center gap-2.5">
+                <button type="button" onclick="duoApp.adjustLength(-1)"
+                        class="pop-btn-sm btn-surface w-9 h-9 font-mono font-extrabold text-base flex items-center justify-center flex-shrink-0">
+                  −
+                </button>
+                <input type="range" id="lengthSlider" min="8" max="64" value="16"
+                       oninput="duoApp.setLength(this.value)"
+                       class="pop-slider">
+                <button type="button" onclick="duoApp.adjustLength(1)"
+                        class="pop-btn-sm btn-surface w-9 h-9 font-mono font-extrabold text-base flex items-center justify-center flex-shrink-0">
+                  +
+                </button>
+              </div>
+            </div>
+
+            <!-- Memorable Words Controls (Shown only in Memorable Words mode) -->
+            <div id="wordsControlSection" class="hidden space-y-2.5">
+              <div class="grid grid-cols-2 gap-2">
+                <div class="s-elevated p-2.5 flex items-center justify-between gap-1">
+                  <div class="font-display font-extrabold text-xs t-primary">Words</div>
+                  <select id="optWordCount" onchange="duoApp.generatePassword(false); duoApp.generateBulkBatch();"
+                          class="s-input px-2 py-1 rounded-lg font-mono font-extrabold text-xs">
+                    <option value="4" selected>4 Words</option>
+                    <option value="5">5 Words</option>
+                    <option value="6">6 Words</option>
+                    <option value="7">7 Words</option>
+                    <option value="8">8 Words</option>
+                  </select>
+                </div>
+
+                <div class="s-elevated p-2.5 flex items-center justify-between gap-1">
+                  <div class="font-display font-extrabold text-xs t-primary">Joiner</div>
+                  <select id="optWordSep" onchange="duoApp.generatePassword(false); duoApp.generateBulkBatch();"
+                          class="s-input px-2 py-1 rounded-lg font-mono font-extrabold text-xs">
+                    <option value="-" selected>Hyphen (-)</option>
+                    <option value="_">Under (_)</option>
+                    <option value=".">Dot (.)</option>
+                    <option value="!">Bang (!)</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- Character Pool Toggle Cards (Shown in Random Cipher mode) -->
+            <div id="charPoolGrid" class="grid grid-cols-2 gap-2">
+              <label class="s-elevated p-2.5 flex items-center justify-between cursor-pointer">
+                <div>
+                  <div class="font-display font-extrabold text-xs t-primary">Uppercase</div>
+                  <div class="font-mono text-[10px] t-secondary">A B C D</div>
+                </div>
+                <input type="checkbox" id="optUpper" checked onchange="duoApp.generatePassword(false); duoApp.generateBulkBatch();"
+                       class="w-4 h-4 accent-pink-500 cursor-pointer">
+              </label>
+
+              <label class="s-elevated p-2.5 flex items-center justify-between cursor-pointer">
+                <div>
+                  <div class="font-display font-extrabold text-xs t-primary">Lowercase</div>
+                  <div class="font-mono text-[10px] t-secondary">a b c d</div>
+                </div>
+                <input type="checkbox" id="optLower" checked onchange="duoApp.generatePassword(false); duoApp.generateBulkBatch();"
+                       class="w-4 h-4 accent-pink-500 cursor-pointer">
+              </label>
+
+              <label class="s-elevated p-2.5 flex items-center justify-between cursor-pointer">
+                <div>
+                  <div class="font-display font-extrabold text-xs t-primary">Numbers</div>
+                  <div class="font-mono text-[10px] t-secondary">0 1 2 3</div>
+                </div>
+                <input type="checkbox" id="optNumbers" checked onchange="duoApp.generatePassword(false); duoApp.generateBulkBatch();"
+                       class="w-4 h-4 accent-pink-500 cursor-pointer">
+              </label>
+
+              <label class="s-elevated p-2.5 flex items-center justify-between cursor-pointer">
+                <div>
+                  <div class="font-display font-extrabold text-xs t-primary">Symbols</div>
+                  <div class="font-mono text-[10px] t-secondary">! @ # $</div>
+                </div>
+                <input type="checkbox" id="optSymbols" checked onchange="duoApp.generatePassword(false); duoApp.generateBulkBatch();"
+                       class="w-4 h-4 accent-pink-500 cursor-pointer">
+              </label>
+
+              <label class="s-elevated p-2.5 flex items-center justify-between cursor-pointer col-span-2">
+                <div>
+                  <div class="font-display font-extrabold text-xs t-primary">Exclude Look-Alike Glyphs</div>
+                  <div class="font-mono text-[10px] t-secondary">Omits confusing 0, O, 1, l, I</div>
+                </div>
+                <input type="checkbox" id="optNoAmbiguous" onchange="duoApp.generatePassword(false); duoApp.generateBulkBatch();"
+                       class="w-4 h-4 accent-pink-500 cursor-pointer">
+              </label>
+            </div>
+
+            <!-- Privacy Toggles: Auto-Cloak + Self-Destructing Clipboard -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+              <label class="s-elevated p-2.5 flex items-center justify-between gap-2 cursor-pointer">
+                <div class="flex items-center gap-1.5 min-w-0">
+                  <span class="text-sm">🕵️‍♂️</span>
+                  <div class="truncate">
+                    <div class="font-display font-extrabold text-[11px] t-primary truncate">Auto-Mask (30s)</div>
+                    <div class="text-[10px] t-secondary truncate">Cloaks screen</div>
+                  </div>
+                </div>
+                <input type="checkbox" id="optAutoCloak" checked onchange="duoApp.resetCloakTimer()"
+                       class="w-4 h-4 accent-pink-500 cursor-pointer flex-shrink-0">
+              </label>
+
+              <label class="s-elevated p-2.5 flex items-center justify-between gap-2 cursor-pointer">
+                <div class="flex items-center gap-1.5 min-w-0">
+                  <span class="text-sm">💣</span>
+                  <div class="truncate">
+                    <div class="font-display font-extrabold text-[11px] t-primary truncate">30s Clip Wipe</div>
+                    <div class="text-[10px] t-secondary truncate">Scrubs clipboard</div>
+                  </div>
+                </div>
+                <input type="checkbox" id="optClipDestruct" checked
+                       class="w-4 h-4 accent-pink-500 cursor-pointer flex-shrink-0">
+              </label>
+            </div>
+
+          </div>
+
+          <!-- Bulk Generate (3 Quick Picks) -->
+          <div class="s-card p-4 space-y-2.5">
+            <div class="flex items-center justify-between">
+              <h3 class="font-display font-extrabold text-xs uppercase tracking-wider t-primary flex items-center gap-1.5">
+                <span>📦</span> 3 Quick Picks
+              </h3>
+              <button type="button" onclick="duoApp.generateBulkBatch()"
+                      class="pop-btn-sm accent-yellow px-2.5 py-1 font-display font-extrabold text-[11px]">
+                🔄 Refresh 3
+              </button>
+            </div>
+            <div id="bulkBatchList" class="space-y-2">
+              <!-- Populated by JS -->
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- FOOTER WITH QUICK CHARTER LINK & ESC HINT -->
+  <footer class="w-full max-w-[1640px] mx-auto px-3 sm:px-5 pt-4">
+    <div class="s-card px-4 py-3 flex flex-wrap items-center justify-between gap-3 text-xs font-mono font-bold">
+      <div class="flex flex-wrap items-center gap-2">
+        <span class="t-primary">🦇⚡ HACKMAN &amp; ROBIN CYBER LABS</span>
+        <span class="t-muted hidden sm:inline">•</span>
+        <span id="charterStampStatus" class="tint-green px-2.5 py-0.5 rounded-full font-extrabold text-[11px]">✔️ ZERO-STORAGE VERIFIED</span>
+      </div>
+      <div class="flex flex-wrap items-center gap-3">
+        <span class="t-secondary text-[11px]">💡 Press <kbd class="px-1.5 py-0.5 accent-yellow border border-[#0f172a] rounded font-extrabold">ESC</kbd> anytime for instant Panic Wipe</span>
+        <button type="button" onclick="duoApp.openTermsModal()" class="underline t-primary hover:opacity-80 font-extrabold text-xs">
+          Terms &amp; Conditions of Use
+        </button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 3. TERMS & CONDITIONS MODAL (📜 Terms & Duo Charter) -->
+  <div id="termsModal" class="fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-xs modal-hidden items-center justify-center p-3 sm:p-4">
+    <div class="s-window max-w-2xl w-full overflow-hidden">
+      
+      <!-- Modal Header -->
+      <div class="accent-yellow border-b-[2.5px] border-[#0f172a] px-4 sm:px-6 py-3.5 flex items-center justify-between gap-2">
+        <div class="flex items-center gap-2">
+          <span class="text-xl sm:text-2xl">📜</span>
+          <h3 class="font-display font-extrabold text-sm sm:text-lg t-on-accent">
+            HACKMAN &amp; ROBIN // TERMS &amp; CONDITIONS OF USE
+          </h3>
+        </div>
+        <button type="button" onclick="duoApp.closeTermsModal()"
+                class="pop-btn-sm accent-orange w-8 h-8 font-mono font-extrabold text-sm flex items-center justify-center flex-shrink-0">
+          ✕
+        </button>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="p-4 sm:p-6 space-y-4 max-h-[75vh] overflow-y-auto text-xs sm:text-sm leading-relaxed">
+        <p class="font-semibold t-secondary">
+          Welcome to the Bat-Lab! Before using the <strong>Password Strength Analyser</strong>, the <strong>15s Joker Defusal Arena</strong>, or the <strong>Secret Ephemeral Generator</strong>, please review our official Cyber Dynamic Duo Charter:
+        </p>
+
+        <div class="s-elevated p-3.5 sm:p-4 space-y-1 shadow-[3px_3px_0px_var(--shadow-color)]">
+          <h4 class="font-display font-extrabold text-sm sm:text-base t-primary flex items-center gap-2">
+            <span>🔒</span> 1. Strict Zero-Storage &amp; Ephemeral Generation
+          </h4>
+          <p class="t-secondary">
+            Every password evaluated in the Analyser or forged in the Generator exists <strong>exclusively inside your browser's volatile RAM</strong> using hardware-grade cryptographic randomness (<code>window.crypto.getRandomValues</code>). We never save, log, cache, or transmit your passwords to any server, database, cookie, or <code>localStorage</code>.
+          </p>
+        </div>
+
+        <div class="s-elevated p-3.5 sm:p-4 space-y-1 shadow-[3px_3px_0px_var(--shadow-color)]">
+          <h4 class="font-display font-extrabold text-sm sm:text-base t-primary flex items-center gap-2">
+            <span>🎭</span> 2. Good-Vibes Comedy Code (Funny, Never Hurtful)
+          </h4>
+          <p class="t-secondary">
+            Hackman &amp; Robin's remarks and our Villain Crack-Time Arena (featuring The Riddler, Two-Face, and The Joker) are crafted to make cybersecurity education memorable and entertaining! All commentary is strictly family-friendly, uplifting, and free of any abusive, racial, derogatory, or hurtful language.
+          </p>
+        </div>
+
+        <div class="s-elevated p-3.5 sm:p-4 space-y-1 shadow-[3px_3px_0px_var(--shadow-color)]">
+          <h4 class="font-display font-extrabold text-sm sm:text-base t-primary flex items-center gap-2">
+            <span>💣</span> 3. Client Secrecy, Self-Destruct Clipboard &amp; User Responsibility
+          </h4>
+          <p class="t-secondary">
+            Because we never save your generated passwords, <strong>once you close or refresh this tab, or trigger "Panic Wipe (ESC)", that secret is gone forever</strong>. Always save your chosen password in a trusted password manager.
+          </p>
+        </div>
+
+        <div class="pt-2 flex justify-end">
+          <button type="button" onclick="duoApp.acceptTermsAndStamp()"
+                  class="pop-btn accent-mint font-display font-extrabold text-xs sm:text-sm px-5 py-2.5">
+            Accept &amp; Stamp Official Charter ✅
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- APPLICATION LOGIC -->
+  <script>
+    class HackmanRobinApp {
+      constructor() {
+        this.soundEnabled = true;
+        this.audioCtx = null;
+        this.currentTheme = 'day';
+        this.genMode = 'cipher'; // 'cipher' | 'phrase' | 'words' | 'leet' | 'pin'
+        this.genLength = 16;
+        this.currentGenerated = '';
+        this.bulkSecrets = [];
+        this.isCloaked = false;
+        this.cloakSeconds = 30;
+        this.cloakInterval = null;
+
+        // Feature #5: Self-Destructing Clipboard State
+        this.clipSeconds = 30;
+        this.clipInterval = null;
+
+        this.currentBracketKey = 'idle';
+        this.banterIndex = 0;
+
+        // Mode Explanations
+        this.modeDescriptions = {
+          cipher: 'Maximum mathematical security using a cryptographic mix of letters, numbers, and symbols.',
+          phrase: 'Transforms any memorable sentence you type into an unbreakable password with a Word-by-Word Memory Map!',
+          words: '4 to 8 memorable comic detective words joined by a custom separator and numeric/symbol armor.',
+          leet: 'Mutates superhero words with stylized leetspeak substitutions (@, 3, !, 0, $) and tactical cyber shields.',
+          pin: 'High-entropy numeric vault code with anti-pattern protection for lockscreens and hardware keys.'
+        };
+
+        this.samplePhrases = [
+          'I love eating 3 slices of pizza on Fridays at 8!',
+          'My dog Ace chased 42 squirrels around Wayne Manor!',
+          'Never trust The Joker with 99 purple balloons at midnight!',
+          'Robin drank 5 cups of hot cocoa in the Batcave at 7!'
+        ];
+        this.phraseSampleIdx = 0;
+
+        // Clean, Funny, Uplifting Banter Library per Score Bracket
+        this.banterLibrary = {
+          idle: [
+            {
+              h: "Step right up to the Bat-Scanner! Type any password in Column 01, or test your speed in the 15-Second Joker Defusal Challenge in Column 02!",
+              r: "Holy triple-threat workstation, Hackman! Click 'Sample' to watch our Villain Arena and X-Ray Scanner light up!"
+            },
+            {
+              h: "Need a password you can actually remember? Try our 'Phrase Fortress' mode in Column 03!",
+              r: "Or switch between Day, Midnight, and Arcade themes in the top bar!"
+            }
+          ],
+          tier1: [ // 1 - 20 pts
+            {
+              h: "Citizen, even The Riddler's pocket calculator cracked this before he finished asking his first riddle!",
+              r: "Holy wet paper napkin, Hackman! Two-Face didn't even have to flip his coin! Click 'Auto-Upgrade' quick!"
+            },
+            {
+              h: "Using a password this fragile is like locking the Batmobile with a piece of cooked spaghetti.",
+              r: "The Joker is giggling! Let's add some length, numbers, and spicy symbols right away!"
+            }
+          ],
+          tier2: [ // 21 - 40 pts
+            {
+              h: "You stalled The Riddler for a few moments, citizen, but Two-Face's dual-coin botnet sliced right through it!",
+              r: "Holy squeaky bicycle lock! Toss in uppercase letters and symbols so we can take down Two-Face!"
+            },
+            {
+              h: "We've upgraded from tissue paper to cardboard armor. Good start, but Gotham's heavier villains are still grinning.",
+              r: "Stretch it past 12 characters and watch those 10 strength blocks light up!"
+            }
+          ],
+          tier3: [ // 41 - 60 pts
+            {
+              h: "Nice work! The Riddler is officially stumped and scratching his bowler hat! Now let's reinforce it against Two-Face.",
+              r: "Holy street-patrol armor, Hackman! One boss down, two more supervillains to humble!"
+            },
+            {
+              h: "Respectable craftsmanship! You're past the easy dictionary traps and just a few symbols away from superhero territory.",
+              r: "Add 3 or 4 more characters and Two-Face's botnet will flip out!"
+            }
+          ],
+          tier4: [ // 61 - 80 pts
+            {
+              h: "BOOM! Both The Riddler AND Two-Face have surrendered! Only The Joker's 1-Trillion-guess supercluster remains!",
+              r: "Holy laser-guarded titanium vault! That password does backflips through a ring of fire!"
+            },
+            {
+              h: "Gotham-grade protection achieved! Two-Face flipped his coin a billion times and gave up.",
+              r: "Just a tiny bit more entropy and even The Joker's chaos rig will wave the white flag!"
+            }
+          ],
+          tier5: [ // 81 - 100 pts
+            {
+              h: "FLAWLESS VICTORY! The Riddler, Two-Face, AND The Joker's 1-Trillion/sec Chaos Cluster are all completely defeated!",
+              r: "HOLY INTERGALACTIC MASTERPIECE! Even if the villains teamed up until the sun turned into a popsicle, this vault stands unbroken!"
+            },
+            {
+              h: "Supreme Cosmic Fortress achieved! That entropy score belongs in the Gotham Cyber Sleuth Hall of Fame.",
+              r: "3 out of 3 Bosses K.O.'d! Take a bow, detective!"
+            }
+          ]
+        };
+
+        this.commonDictionaryTraps = [
+          'password', '123456', '12345678', 'qwerty', 'admin', 'welcome',
+          'letmein', 'iloveyou', 'monkey', 'dragon', 'sunshine', 'princess',
+          'football', 'baseball', 'batman', 'robin', 'gotham', 'abc123', 'pass123', 'joker', 'riddler'
+        ];
+
+        this.comicWords = [
+          'Neon', 'Falcon', 'Velvet', 'Waffle', 'Batarang', 'Cosmic', 'Thunder', 'Pixel',
+          'Rocket', 'Kazoo', 'Vortex', 'Comet', 'Disco', 'Dynamo', 'Pretzel', 'Laser',
+          'Phantom', 'Glacier', 'Turbo', 'Nacho', 'Cactus', 'Magnet', 'Cobalt', 'Phoenix'
+        ];
+
+        // Feature B: 15-Second Joker Vault Defusal State (Centered Column 02)
+        this.defusalActive = false;
+        this.defusalTimeLeft = 15.0;
+        this.defusalTimer = null;
+        this.defusalBestTime = null;
+        this.defusalWins = 0;
+        this.lastTickSecond = 15;
+        this.jokerChallengeRules = [
+          { minLen: 14, text: "🃏 Joker's Rule: Must be 14+ chars, Score 85+, & 0 X-Ray traps! (No Paste!)" },
+          { minLen: 13, text: "🃏 Joker's Rule: Must be 13+ chars, mix Upper/Lower/Num/Sym & hit 85+ pts!" },
+          { minLen: 15, text: "🃏 Joker's Rule: Craft a 15+ char fortress scoring 85+ pts with 0 weak spots!" }
+        ];
+        this.activeChallengeRule = this.jokerChallengeRules[0];
+      }
+
+      init() {
+        const analyserInput = document.getElementById('analyserInput');
+        const defusalInput = document.getElementById('defusalInput');
+
+        // Sync Main Analyser Input -> Evaluation & Defusal Input
+        if (analyserInput) {
+          analyserInput.addEventListener('input', (e) => {
+            if (defusalInput && defusalInput.value !== e.target.value) {
+              defusalInput.value = e.target.value;
+            }
+            this.evaluatePassword(e.target.value);
+          });
+
+          analyserInput.addEventListener('paste', (e) => {
+            if (this.defusalActive) {
+              e.preventDefault();
+              this.playTone('wipe');
+              this.showToast('🃏 JOKER ANTI-CHEAT!', 'No pasting allowed during the 15s Defusal Challenge!', '🚫');
+            }
+          });
+        }
+
+        // Sync Dedicated Center Challenge Input -> Main Analyser Input & Evaluation
+        if (defusalInput) {
+          defusalInput.addEventListener('input', (e) => {
+            if (analyserInput && analyserInput.value !== e.target.value) {
+              analyserInput.value = e.target.value;
+            }
+            this.evaluatePassword(e.target.value);
+          });
+
+          defusalInput.addEventListener('paste', (e) => {
+            if (this.defusalActive) {
+              e.preventDefault();
+              this.playTone('wipe');
+              this.showToast('🃏 JOKER ANTI-CHEAT!', 'No pasting allowed! Type your defusal code live!', '🚫');
+            }
+          });
+        }
+
+        // Global ESC key listener for Feature #5: Boss Key / Panic Wipe
+        window.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape') {
+            const modal = document.getElementById('termsModal');
+            if (modal && modal.classList.contains('modal-active')) {
+              this.closeTermsModal();
+            } else {
+              this.panicWipe('esc');
+            }
+          }
+        });
+
+        this.evaluatePassword('');
+        this.generatePassword(false);
+        this.generateBulkBatch();
+        this.resetCloakTimer();
+      }
+
+      // Cryptographically safe random integer helper
+      getCryptoRandomInt(max) {
+        if (max <= 1) return 0;
+        if (window.crypto && window.crypto.getRandomValues) {
+          const arr = new Uint32Array(1);
+          window.crypto.getRandomValues(arr);
+          return arr[0] % max;
+        }
+        return Math.floor(Math.random() * max);
+      }
+
+      // =====================================================================
+      // FEATURE #6: ONE-CLICK RETRO COLOR THEMES (PERFECT TEXT VISIBILITY)
+      // =====================================================================
+      setTheme(themeName) {
+        this.playTone('pop');
+        this.currentTheme = themeName;
+        document.body.setAttribute('data-theme', themeName);
+
+        const labels = { day: 'Day', midnight: 'Midnight', arcade: 'Arcade' };
+        const icons = { day: '☀️', midnight: '🌙', arcade: '🕹️' };
+
+        ['day', 'midnight', 'arcade'].forEach((t) => {
+          const btn = document.getElementById('themeBtn_' + t);
+          if (!btn) return;
+          if (t === themeName) {
+            btn.className = 'px-2.5 sm:px-3 py-1.5 rounded-lg font-display font-extrabold text-xs flex items-center gap-1 accent-yellow border-2 border-[#0f172a] transition-all';
+          } else {
+            btn.className = 'px-2.5 sm:px-3 py-1.5 rounded-lg font-display font-extrabold text-xs flex items-center gap-1 t-primary hover:opacity-80 transition-all';
+          }
+          btn.innerHTML = `<span>${icons[t]}</span> <span>${labels[t]}</span>`;
+        });
+
+        const fullNames = {
+          day: '☀️ Pop-Art Day',
+          midnight: '🌙 Gotham Midnight',
+          arcade: '🕹️ 90s Mint Arcade'
+        };
+        this.showToast('🎨 THEME UPDATED', `${fullNames[themeName]} activated!`, '✨');
+      }
+
+      showToast(title, msg, icon = '🦇') {
+        const toast = document.getElementById('duoToast');
+        if (!toast) return;
+        document.getElementById('duoToastTitle').textContent = title;
+        document.getElementById('duoToastMsg').textContent = msg;
+        document.getElementById('duoToastIcon').textContent = icon;
+        toast.classList.remove('opacity-0', 'translate-y-3');
+        toast.classList.add('opacity-100', 'translate-y-0');
+
+        clearTimeout(this.toastTimeout);
+        this.toastTimeout = setTimeout(() => {
+          toast.classList.remove('opacity-100', 'translate-y-0');
+          toast.classList.add('opacity-0', 'translate-y-3');
+        }, 2800);
+      }
+
+      // =====================================================================
+      // WEB AUDIO RETRO SOUND EFFECTS
+      // =====================================================================
+      playTone(type) {
+        if (!this.soundEnabled) return;
+        try {
+          const AudioCtx = window.AudioContext || window.webkitAudioContext;
+          if (!this.audioCtx && AudioCtx) this.audioCtx = new AudioCtx();
+          if (!this.audioCtx) return;
+          if (this.audioCtx.state === 'suspended') this.audioCtx.resume();
+
+          const now = this.audioCtx.currentTime;
+          const osc = this.audioCtx.createOscillator();
+          const gain = this.audioCtx.createGain();
+          osc.connect(gain);
+          gain.connect(this.audioCtx.destination);
+
+          if (type === 'pop') {
+            osc.type = 'triangle';
+            osc.frequency.setValueAtTime(520, now);
+            osc.frequency.exponentialRampToValueAtTime(880, now + 0.06);
+            gain.gain.setValueAtTime(0.06, now);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + 0.06);
+            osc.start(now);
+            osc.stop(now + 0.06);
+          } else if (type === 'success') {
+            osc.type = 'triangle';
+            osc.frequency.setValueAtTime(523.25, now);
+            osc.frequency.setValueAtTime(659.25, now + 0.06);
+            osc.frequency.setValueAtTime(783.99, now + 0.12);
+            osc.frequency.setValueAtTime(1046.5, now + 0.18);
+            gain.gain.setValueAtTime(0.08, now);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + 0.32);
+            osc.start(now);
+            osc.stop(now + 0.32);
+          } else if (type === 'wipe') {
+            osc.type = 'sawtooth';
+            osc.frequency.setValueAtTime(400, now);
+            osc.frequency.exponentialRampToValueAtTime(110, now + 0.22);
+            gain.gain.setValueAtTime(0.07, now);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + 0.22);
+            osc.start(now);
+            osc.stop(now + 0.22);
+          } else if (type === 'tick') {
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(740, now);
+            gain.gain.setValueAtTime(0.04, now);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + 0.04);
+            osc.start(now);
+            osc.stop(now + 0.04);
+          } else if (type === 'urgentTick') {
+            osc.type = 'square';
+            osc.frequency.setValueAtTime(980, now);
+            gain.gain.setValueAtTime(0.06, now);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + 0.06);
+            osc.start(now);
+            osc.stop(now + 0.06);
+          } else if (type === 'boom') {
+            osc.type = 'sawtooth';
+            osc.frequency.setValueAtTime(190, now);
+            osc.frequency.exponentialRampToValueAtTime(42, now + 0.45);
+            gain.gain.setValueAtTime(0.11, now);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + 0.45);
+            osc.start(now);
+            osc.stop(now + 0.45);
+          }
+        } catch (err) {}
+      }
+
+      toggleSound() {
+        this.soundEnabled = !this.soundEnabled;
+        document.getElementById('sfxIcon').textContent = this.soundEnabled ? '🔊' : '🔇';
+        document.getElementById('sfxText').textContent = this.soundEnabled ? 'SFX: ON' : 'SFX: OFF';
+        if (this.soundEnabled) this.playTone('pop');
+      }
+
+      // =====================================================================
+      // COLUMN 1: PASSWORD STRENGTH ANALYSER + 3-BOSS VILLAIN ARENA
+      // =====================================================================
+      evaluatePassword(pwd) {
+        const safePwd = String(pwd || '');
+        const len = safePwd.length;
+        document.getElementById('charCountPill').textContent = `${len} Character${len === 1 ? '' : 's'}`;
+
+        const hasUpper = /[A-Z]/.test(safePwd);
+        const hasLower = /[a-z]/.test(safePwd);
+        const hasNum = /[0-9]/.test(safePwd);
+        const hasSym = /[^A-Za-z0-9]/.test(safePwd);
+        const hasLen12 = len >= 12;
+
+        // Render X-Ray first so we know exact weak spots count
+        const xrayReport = this.renderPasswordXRay(safePwd);
+
+        // Dictionary & Pattern Check
+        const lower = safePwd.toLowerCase();
+        let trapFound = false;
+        for (const word of this.commonDictionaryTraps) {
+          if (len > 0 && lower.includes(word)) {
+            trapFound = true;
+            break;
+          }
+        }
+        const repeatedChars = /(.)\1{2,}/.test(safePwd);
+        const isClean = len > 0 && !trapFound && !repeatedChars && xrayReport.weakCount === 0;
+
+        // Update 6 Interactive Requirement Pills
+        this.updateReqPill('reqLen', hasLen12);
+        this.updateReqPill('reqUpper', hasUpper);
+        this.updateReqPill('reqLower', hasLower);
+        this.updateReqPill('reqNum', hasNum);
+        this.updateReqPill('reqSym', hasSym);
+        this.updateReqPill('reqClean', isClean);
+
+        // Calculate Character Pool & Entropy
+        let pool = 0;
+        if (hasLower) pool += 26;
+        if (hasUpper) pool += 26;
+        if (hasNum) pool += 10;
+        if (hasSym) pool += 32;
+        let entropy = pool > 0 ? len * Math.log2(pool) : 0;
+        if (trapFound) entropy = Math.min(entropy, 18);
+
+        // Calculate 0-100 Score
+        let score = 0;
+        if (len > 0) {
+          score += Math.min(40, len * 2.6);
+          if (hasLower) score += 10;
+          if (hasUpper) score += 12;
+          if (hasNum) score += 12;
+          if (hasSym) score += 16;
+
+          const typesCount = [hasLower, hasUpper, hasNum, hasSym].filter(Boolean).length;
+          if (typesCount >= 3) score += 5;
+          if (typesCount === 4 && len >= 12) score += 5;
+
+          if (trapFound) score -= 35;
+          if (repeatedChars) score -= 15;
+          if (!trapFound && !repeatedChars && xrayReport.weakCount > 0) {
+            score -= Math.min(20, xrayReport.weakCount * 4);
+          }
+          if (len < 6) score = Math.min(score, 18);
+        }
+        score = Math.max(0, Math.min(100, Math.round(score)));
+
+        // Determine Grade, Emoji, Color, and Bracket
+        let mood = '😴';
+        let verdict = 'Awaiting Password...';
+        let stars = 0;
+        let segColor = '#94a3b8';
+        let bracketKey = 'idle';
+        let resistance = 'Idle';
+
+        if (len === 0) {
+          mood = '😴';
+          verdict = 'Awaiting Password...';
+          stars = 0;
+          segColor = '#94a3b8';
+          bracketKey = 'idle';
+          resistance = 'Idle';
+        } else if (score <= 20) {
+          mood = '😱';
+          verdict = 'Wet Paper Napkin';
+          stars = 1;
+          segColor = '#fb923c';
+          bracketKey = 'tier1';
+          resistance = trapFound ? 'Dictionary Trap' : 'Instant Crack';
+        } else if (score <= 40) {
+          mood = '😬';
+          verdict = 'Cardboard Shield';
+          stars = 2;
+          segColor = '#facc15';
+          bracketKey = 'tier2';
+          resistance = 'Weak vs Botnets';
+        } else if (score <= 60) {
+          mood = '🤔';
+          verdict = 'Street Patrol Grade';
+          stars = 3;
+          segColor = '#38bdf8';
+          bracketKey = 'tier3';
+          resistance = 'Beats Riddler';
+        } else if (score <= 80) {
+          mood = '😎';
+          verdict = 'Bat-Bunker Armor';
+          stars = 4;
+          segColor = '#ff7eb6';
+          bracketKey = 'tier4';
+          resistance = 'Beats Two-Face';
+        } else {
+          mood = '🤩';
+          verdict = 'Cosmic Fortress';
+          stars = 5;
+          segColor = '#4ade80';
+          bracketKey = 'tier5';
+          resistance = 'Beats The Joker!';
+        }
+
+        // Update DOM Score & Visuals
+        document.getElementById('moodFaceBox').textContent = mood;
+        document.getElementById('verdictTitle').textContent = verdict;
+        document.getElementById('scoreNumber').textContent = score;
+        document.getElementById('scoreRingPct').textContent = `${score}%`;
+
+        // Update Circular SVG Gauge
+        const ring = document.getElementById('scoreRingCircle');
+        const circumference = 150.8;
+        ring.style.strokeDashoffset = (circumference - (score / 100) * circumference).toFixed(1);
+        ring.style.stroke = segColor;
+
+        // Update 10-Block Segmented Meter
+        const activeBlocks = Math.ceil(score / 10);
+        const segs = document.querySelectorAll('#segmentedMeter .meter-seg');
+        segs.forEach((seg, idx) => {
+          if (idx < activeBlocks && len > 0) {
+            seg.style.backgroundColor = segColor;
+            seg.classList.add('active');
+          } else {
+            seg.style.backgroundColor = 'var(--bg-elevated)';
+            seg.classList.remove('active');
+          }
+        });
+
+        // Render 5-Star Bar
+        let starHtml = '';
+        for (let i = 1; i <= 5; i++) {
+          if (i <= stars) {
+            starHtml += `<span style="color: var(--accent-yellow); -webkit-text-stroke: 1px #0f172a;">★</span>`;
+          } else {
+            starHtml += `<span class="t-muted">★</span>`;
+          }
+        }
+        document.getElementById('starBar').innerHTML = starHtml;
+
+        // Update 3 Metric Pills
+        document.getElementById('metricEntropy').textContent = `${entropy.toFixed(1)} bits`;
+        document.getElementById('metricPool').textContent = `${pool} glyphs`;
+        document.getElementById('metricResistance').textContent = resistance;
+
+        // Update Feature #3: 3-Boss Villain Arena
+        this.updateVillainArena(entropy, len, trapFound);
+
+        // Always update Center Challenge live telemetry (and check win if active)
+        this.updateDefusalTelemetry(safePwd, score, xrayReport.weakCount);
+
+        // Update Banter if Bracket Changed
+        if (bracketKey !== this.currentBracketKey) {
+          this.currentBracketKey = bracketKey;
+          this.banterIndex = 0;
+          this.renderBanter();
+          if (score >= 81 && !this.defusalActive) this.playTone('success');
+        }
+      }
+
+      // =====================================================================
+      // FEATURE A: 🔬 PASSWORD X-RAY SCANNER (CHARACTER INSPECTOR)
+      // =====================================================================
+      renderPasswordXRay(pwd) {
+        const container = document.getElementById('xrayPillContainer');
+        const summaryBadge = document.getElementById('xraySummaryBadge');
+        const inspectorText = document.getElementById('xrayInspectorText');
+        const penaltyBadge = document.getElementById('xrayPenaltyBadge');
+
+        if (!pwd || pwd.length === 0) {
+          container.innerHTML = `<span class="text-xs font-mono font-bold t-muted">Type a password above to X-Ray every character...</span>`;
+          summaryBadge.textContent = '0 Strong • 0 Weak';
+          summaryBadge.className = 's-elevated px-2.5 py-0.5 rounded-full font-mono text-[10px] font-extrabold t-primary shadow-[2px_2px_0px_var(--shadow-color)]';
+          inspectorText.textContent = '🔍 Forensic Lens Ready: Tap any glyph pill above for full diagnostics.';
+          penaltyBadge.classList.add('hidden');
+          this.xrayDiagnostics = [];
+          return { strongCount: 0, weakCount: 0 };
+        }
+
+        const n = pwd.length;
+        const weakReasons = new Array(n).fill(null);
+        const lower = pwd.toLowerCase();
+
+        // 1. Detect Dictionary Traps
+        for (const word of this.commonDictionaryTraps) {
+          let startIdx = lower.indexOf(word);
+          while (startIdx !== -1) {
+            for (let k = startIdx; k < startIdx + word.length; k++) {
+              weakReasons[k] = `Dictionary Trap ("${word}") — easily guessed by Riddler's wordlist (-35 pts)`;
+            }
+            startIdx = lower.indexOf(word, startIdx + 1);
+          }
+        }
+
+        // 2. Detect Common Years (1970 - 2039)
+        const yearRegex = /(19[7-9]\d|20[0-3]\d)/g;
+        let match;
+        while ((match = yearRegex.exec(pwd)) !== null) {
+          for (let k = match.index; k < match.index + 4; k++) {
+            if (!weakReasons[k]) {
+              weakReasons[k] = `Predictable Year Pattern ("${match[0]}") — common date trap`;
+            }
+          }
+        }
+
+        // 3. Detect Keyboard Walks (qwerty, asdf, zxcv)
+        const walks = ['qwertyuiop', 'asdfghjkl', 'zxcvbnm', 'poiuytrewq', 'lkjhgfdsa', 'mnbvcxz'];
+        for (let i = 0; i <= n - 3; i++) {
+          const sub = lower.slice(i, i + 3);
+          if (walks.some(w => w.includes(sub))) {
+            for (let k = i; k < i + 3; k++) {
+              if (!weakReasons[k]) {
+                weakReasons[k] = `Keyboard Walk ("${pwd.slice(i, i + 3)}") — adjacent keys are cracked fast`;
+              }
+            }
+          }
+        }
+
+        // 4. Detect Sequential Runs (123, 321, abc, cba)
+        for (let i = 0; i <= n - 3; i++) {
+          const c0 = lower.charCodeAt(i);
+          const c1 = lower.charCodeAt(i + 1);
+          const c2 = lower.charCodeAt(i + 2);
+          const isAlnum = /[a-z0-9]/.test(lower[i]) && /[a-z0-9]/.test(lower[i + 1]) && /[a-z0-9]/.test(lower[i + 2]);
+          if (isAlnum && ((c1 === c0 + 1 && c2 === c1 + 1) || (c1 === c0 - 1 && c2 === c1 - 1))) {
+            const seqStr = pwd.slice(i, i + 3);
+            for (let k = i; k < i + 3; k++) {
+              if (!weakReasons[k]) {
+                weakReasons[k] = `Sequential Run ("${seqStr}") — predictable character order`;
+              }
+            }
+          }
+        }
+
+        // 5. Detect Repeated Triplets (aaa, 111, $$$)
+        for (let i = 0; i <= n - 3; i++) {
+          if (pwd[i] === pwd[i + 1] && pwd[i + 1] === pwd[i + 2]) {
+            for (let k = i; k < i + 3; k++) {
+              weakReasons[k] = `Repeated Triplet ("${pwd[i].repeat(3)}") — wastes character entropy`;
+            }
+          }
+        }
+
+        let weakCount = 0;
+        let strongCount = 0;
+        let pillsHtml = '';
+        this.xrayDiagnostics = [];
+
+        for (let i = 0; i < n; i++) {
+          const ch = pwd[i];
+          const displayChar = ch === ' ' ? '␣' : this.escapeHtml(ch);
+          const trap = weakReasons[i];
+          let colorClass = 'accent-mint';
+          let tagTitle = '';
+
+          if (trap) {
+            weakCount++;
+            colorClass = 'accent-danger';
+            tagTitle = `Tile #${i + 1} ['${ch}']: ⚠️ ${trap}`;
+          } else {
+            strongCount++;
+            if (/[^A-Za-z0-9]/.test(ch)) {
+              colorClass = 'accent-pink';
+              tagTitle = `Tile #${i + 1} ['${ch}']: 💥 Special Symbol (+32 Pool Glyphs, High Entropy)`;
+            } else if (/[0-9]/.test(ch)) {
+              colorClass = 'accent-blue';
+              tagTitle = `Tile #${i + 1} ['${ch}']: 🔢 Numeric Digit (+10 Pool Glyphs, Clean Placement)`;
+            } else if (/[A-Z]/.test(ch)) {
+              colorClass = 'accent-yellow';
+              tagTitle = `Tile #${i + 1} ['${ch}']: 🔠 Uppercase Letter (+26 Pool Glyphs, Strong Mix)`;
+            } else {
+              colorClass = 'accent-mint';
+              tagTitle = `Tile #${i + 1} ['${ch}']: 🔡 Lowercase Letter (+26 Pool Glyphs, Clean Base)`;
+            }
+          }
+
+          this.xrayDiagnostics.push({ text: tagTitle, isTrap: Boolean(trap) });
+
+          pillsHtml += `
+            <button type="button"
+                    onmouseenter="duoApp.inspectXRayByIndex(${i})"
+                    onclick="duoApp.inspectXRayByIndex(${i})"
+                    class="xray-pill ${colorClass} px-1.5">
+              <span class="text-xs sm:text-sm leading-none">${displayChar}</span>
+              <span class="text-[8px] opacity-80 leading-none mt-0.5">#${i + 1}</span>
+            </button>
+          `;
+        }
+
+        container.innerHTML = pillsHtml;
+        summaryBadge.textContent = `${strongCount} Strong • ${weakCount} Weak`;
+
+        if (weakCount > 0) {
+          summaryBadge.className = 'accent-danger px-2.5 py-0.5 rounded-full border-2 border-[#0f172a] font-mono text-[10px] font-extrabold shadow-[2px_2px_0px_#0f172a]';
+          penaltyBadge.classList.remove('hidden');
+          const firstTrapIdx = weakReasons.findIndex(Boolean);
+          inspectorText.textContent = `⚠️ X-Ray Alert at #${firstTrapIdx + 1}: ${weakReasons[firstTrapIdx]}`;
+        } else {
+          summaryBadge.className = 'accent-mint px-2.5 py-0.5 rounded-full border-2 border-[#0f172a] font-mono text-[10px] font-extrabold shadow-[2px_2px_0px_#0f172a]';
+          penaltyBadge.classList.add('hidden');
+          inspectorText.textContent = `✅ X-Ray All-Clear: All ${strongCount} characters are free of sequences, repeats & dictionary traps!`;
+        }
+
+        return { strongCount, weakCount };
+      }
+
+      inspectXRayByIndex(idx) {
+        if (!this.xrayDiagnostics || !this.xrayDiagnostics[idx]) return;
+        const item = this.xrayDiagnostics[idx];
+        const inspectorText = document.getElementById('xrayInspectorText');
+        const inspectorBar = document.getElementById('xrayInspectorBar');
+        inspectorText.textContent = item.text;
+        if (item.isTrap) {
+          inspectorBar.className = 'tint-pink rounded-xl px-3 py-2 text-[11px] font-mono font-bold flex flex-wrap items-center justify-between gap-1.5';
+        } else {
+          inspectorBar.className = 'tint-blue rounded-xl px-3 py-2 text-[11px] font-mono font-bold flex flex-wrap items-center justify-between gap-1.5';
+        }
+      }
+
+      // =====================================================================
+      // COLUMN 2 (CENTER): 🕹️ 15-SECOND JOKER VAULT DEFUSAL MINI-GAME
+      // =====================================================================
+      startDefusalChallenge() {
+        this.playTone('pop');
+        if (this.defusalTimer) clearInterval(this.defusalTimer);
+
+        this.defusalActive = true;
+        this.defusalTimeLeft = 15.0;
+        this.lastTickSecond = 15;
+        this.activeChallengeRule = this.jokerChallengeRules[this.getCryptoRandomInt(this.jokerChallengeRules.length)];
+
+        // Update UI Buttons & Lock Auto-Upgrade during live challenge
+        document.getElementById('startDefusalLabel').textContent = '🔄 RESTART 15s';
+        document.getElementById('cancelDefusalBtn').classList.remove('hidden');
+        document.getElementById('defusalRuleText').textContent = this.activeChallengeRule.text;
+
+        const upgradeBtn = document.getElementById('autoUpgradeBtn');
+        upgradeBtn.classList.add('opacity-50', 'cursor-not-allowed');
+        document.getElementById('autoUpgradeLabel').textContent = '🔒 Locked';
+
+        // Clear & Focus Dedicated Center Challenge Input (and sync main Analyser Input)
+        const analyserInput = document.getElementById('analyserInput');
+        const defusalInput = document.getElementById('defusalInput');
+        analyserInput.value = '';
+        analyserInput.type = 'text';
+        defusalInput.value = '';
+        document.getElementById('visEmoji').textContent = '🙈';
+        document.getElementById('visLabel').textContent = 'Hide';
+        this.evaluatePassword('');
+        defusalInput.focus();
+
+        // Highlight Challenge Arena
+        const arena = document.getElementById('defusalArenaPanel');
+        arena.className = 's-card tint-yellow p-4 space-y-4';
+        document.getElementById('defusalStatusBanner').innerHTML = `
+          <span class="t-primary font-extrabold">🔥 FUSE LIT! Type your defusal code in the box above!</span>
+          <span class="accent-danger px-2 py-0.5 rounded border border-[#0f172a] text-[10px]">LIVE</span>
+        `;
+
+        this.updateDefusalTimerUI();
+
+        this.defusalTimer = setInterval(() => {
+          this.defusalTimeLeft = Math.max(0, +(this.defusalTimeLeft - 0.1).toFixed(1));
+          const ceilSec = Math.ceil(this.defusalTimeLeft);
+          if (ceilSec < this.lastTickSecond && ceilSec > 0) {
+            this.lastTickSecond = ceilSec;
+            this.playTone(ceilSec <= 5 ? 'urgentTick' : 'tick');
+          }
+          this.updateDefusalTimerUI();
+
+          if (this.defusalTimeLeft <= 0) {
+            this.stopDefusalChallenge('timeout');
+          }
+        }, 100);
+      }
+
+      updateDefusalTimerUI() {
+        const badge = document.getElementById('defusalTimerBadge');
+        const bar = document.getElementById('defusalTimeBar');
+        const pct = Math.max(0, (this.defusalTimeLeft / 15.0) * 100);
+
+        badge.textContent = `⏱️ ${this.defusalTimeLeft.toFixed(1)}s`;
+        bar.style.width = `${pct}%`;
+
+        if (this.defusalTimeLeft <= 5.0) {
+          badge.className = 'font-mono text-base sm:text-lg font-extrabold px-3.5 py-1 rounded-xl border-2 border-[#0f172a] accent-danger defusal-urgent shadow-[2px_2px_0px_#0f172a]';
+          bar.className = 'h-full bg-rose-500 transition-all duration-100';
+        } else if (this.defusalTimeLeft <= 9.0) {
+          badge.className = 'font-mono text-base sm:text-lg font-extrabold px-3.5 py-1 rounded-xl border-2 border-[#0f172a] accent-orange shadow-[2px_2px_0px_#0f172a]';
+          bar.className = 'h-full bg-amber-400 transition-all duration-100';
+        } else {
+          badge.className = 'font-mono text-base sm:text-lg font-extrabold px-3.5 py-1 rounded-xl border-2 border-[#0f172a] accent-yellow shadow-[2px_2px_0px_#0f172a]';
+          bar.className = 'h-full bg-emerald-400 transition-all duration-100';
+        }
+      }
+
+      updateDefusalTelemetry(pwd, score, weakCount) {
+        const reqLen = this.activeChallengeRule ? this.activeChallengeRule.minLen : 14;
+        const len = pwd.length;
+
+        const scoreBox = document.getElementById('defusalCheckScore');
+        const lenBox = document.getElementById('defusalCheckLen');
+        const cleanBox = document.getElementById('defusalCheckClean');
+
+        document.getElementById('defusalLiveScoreVal').textContent = `${score} / 85`;
+        document.getElementById('defusalLiveLenVal').textContent = `${len} / ${reqLen}`;
+        document.getElementById('defusalLiveTrapsVal').textContent = `${weakCount} Trap${weakCount === 1 ? '' : 's'}`;
+
+        scoreBox.className = score >= 85
+          ? 'tint-green p-2.5 rounded-xl flex flex-col items-center justify-center'
+          : 's-elevated p-2.5 flex flex-col items-center justify-center';
+
+        lenBox.className = len >= reqLen
+          ? 'tint-green p-2.5 rounded-xl flex flex-col items-center justify-center'
+          : 's-elevated p-2.5 flex flex-col items-center justify-center';
+
+        cleanBox.className = (len > 0 && weakCount === 0)
+          ? 'tint-green p-2.5 rounded-xl flex flex-col items-center justify-center'
+          : (weakCount > 0 ? 'tint-pink p-2.5 rounded-xl flex flex-col items-center justify-center' : 's-elevated p-2.5 flex flex-col items-center justify-center');
+
+        if (!this.defusalActive) return;
+
+        // Check Win Condition during active 15s countdown
+        if (score >= 85 && len >= reqLen && weakCount === 0) {
+          this.stopDefusalChallenge('win', score);
+        } else if (score >= 85 && weakCount > 0) {
+          document.getElementById('defusalStatusBanner').innerHTML = `
+            <span class="t-primary font-extrabold">⚠️ Score is ${score}, but X-Ray found ${weakCount} weak trap(s)! Remove sequences/repeats!</span>
+          `;
+        } else if (score >= 85 && len < reqLen) {
+          document.getElementById('defusalStatusBanner').innerHTML = `
+            <span class="t-primary font-extrabold">⚠️ Add ${reqLen - len} more character(s) to meet Joker's length rule!</span>
+          `;
+        }
+      }
+
+      stopDefusalChallenge(reason, finalScore = 0) {
+        if (this.defusalTimer) clearInterval(this.defusalTimer);
+        this.defusalActive = false;
+
+        // Re-enable Auto-Upgrade button
+        const upgradeBtn = document.getElementById('autoUpgradeBtn');
+        upgradeBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+        document.getElementById('autoUpgradeLabel').textContent = 'Auto-Upgrade';
+        document.getElementById('cancelDefusalBtn').classList.add('hidden');
+
+        const arena = document.getElementById('defusalArenaPanel');
+        const statusBanner = document.getElementById('defusalStatusBanner');
+        const timerBadge = document.getElementById('defusalTimerBadge');
+
+        if (reason === 'win') {
+          this.playTone('success');
+          const elapsed = Math.max(0.1, +(15.0 - this.defusalTimeLeft).toFixed(1));
+          this.defusalWins++;
+          document.getElementById('defusalStreakBadge').textContent = `🔥 Wins: ${this.defusalWins}`;
+
+          if (!this.defusalBestTime || elapsed < this.defusalBestTime) {
+            this.defusalBestTime = elapsed;
+            document.getElementById('defusalBestBadge').textContent = `🏆 Best: ${elapsed}s`;
+          }
+
+          arena.className = 's-card tint-green p-4 space-y-4';
+          timerBadge.className = 'font-mono text-base sm:text-lg font-extrabold px-3.5 py-1 rounded-xl border-2 border-[#0f172a] accent-mint shadow-[2px_2px_0px_#0f172a]';
+          timerBadge.textContent = `🏆 ${elapsed}s WIN!`;
+          document.getElementById('startDefusalLabel').textContent = '🕹️ PLAY AGAIN (15s)';
+
+          statusBanner.innerHTML = `
+            <span class="t-primary font-extrabold">🏆 BOMB DEFUSED IN ${elapsed}s (Score: ${finalScore}/100)!</span>
+            <span class="accent-mint px-2 py-0.5 rounded border border-[#0f172a] text-[10px]">JOKER DEFEATED!</span>
+          `;
+
+          document.getElementById('hackmanSpeech').textContent =
+            `"Incredible typing reflexes, detective! You defused The Joker's Laughing Gas Lock in ${elapsed} seconds flat!"`;
+          document.getElementById('robinSpeech').textContent =
+            `"HOLY SPEEDRUN, HACKMAN! That's Win #${this.defusalWins}! The Joker is eating his own confetti!"`;
+
+          this.showToast('🏆 BOMB DEFUSED!', `Defused in ${elapsed}s! All 3 Bosses K.O.'d!`, '🎉');
+        } else if (reason === 'timeout') {
+          this.playTone('boom');
+          arena.className = 's-card tint-pink p-4 space-y-4 wipe-anim';
+          timerBadge.className = 'font-mono text-base sm:text-lg font-extrabold px-3.5 py-1 rounded-xl border-2 border-[#0f172a] accent-danger shadow-[2px_2px_0px_#0f172a]';
+          timerBadge.textContent = '💥 0.0s BOOOM!';
+          document.getElementById('startDefusalLabel').textContent = '🔄 REMATCH THE JOKER';
+
+          statusBanner.innerHTML = `
+            <span class="t-primary font-extrabold">💥 BOOOM! LAUGHING GAS DEPLOYED! Time ran out!</span>
+            <button type="button" onclick="duoApp.startDefusalChallenge()" class="underline font-extrabold t-primary">Try Again</button>
+          `;
+
+          document.getElementById('hackmanSpeech').textContent =
+            '"Cough, cough! The Joker got us with his harmless pink laughing gas! Mix Upper, Lower, Numbers & Symbols past 14 chars!"';
+          document.getElementById('robinSpeech').textContent =
+            '"HAHAHA—Wait, why am I giggling?! Quick, hit Rematch and show that clown who rules Gotham!"';
+
+          this.showToast('💥 LAUGHING GAS DEPLOYED!', 'Timer hit 0.0s! Click Rematch to try again!', '🃏');
+        } else {
+          arena.className = 's-card p-4 space-y-4';
+          timerBadge.className = 'font-mono text-base sm:text-lg font-extrabold px-3.5 py-1 rounded-xl border-2 border-[#0f172a] accent-yellow shadow-[2px_2px_0px_#0f172a]';
+          timerBadge.textContent = '⏱️ 15.0s';
+          document.getElementById('defusalTimeBar').style.width = '100%';
+          document.getElementById('startDefusalLabel').textContent = '🕹️ START 15s DEFUSAL CHALLENGE';
+          statusBanner.innerHTML = `
+            <span>Challenge aborted. Press START anytime to arm the lock!</span>
+            <span class="font-extrabold t-primary">Ready</span>
+          `;
+        }
+      }
+
+      // =====================================================================
+      // FEATURE #3: VILLAIN CRACK-TIME ARENA (RIDDLER, TWO-FACE, JOKER)
+      // =====================================================================
+      updateVillainArena(entropy, len, trapFound) {
+        const combinations = len > 0 ? Math.pow(2, entropy) : 0;
+
+        // 1. Easy Boss: The Riddler (10 Million guesses/sec = 1e7)
+        const riddlerSec = combinations / 1e7;
+        // 2. Medium Boss: Two-Face (10 Billion guesses/sec = 1e10)
+        const twofaceSec = combinations / 1e10;
+        // 3. Top Boss: The Joker (1 Trillion guesses/sec = 1e12)
+        const jokerSec = combinations / 1e12;
+
+        let bossesDefeated = 0;
+
+        const updateBoss = (prefix, seconds, easyQuips) => {
+          const timeEl = document.getElementById(prefix + 'Time');
+          const badgeEl = document.getElementById(prefix + 'Badge');
+          const quipEl = document.getElementById(prefix + 'Quip');
+          const barEl = document.getElementById(prefix + 'Bar');
+
+          if (len === 0) {
+            timeEl.textContent = 'Instant';
+            badgeEl.textContent = 'STANDBY';
+            badgeEl.className = 'text-[9px] font-mono font-extrabold uppercase px-1.5 py-0.5 rounded border border-[#0f172a] accent-yellow';
+            quipEl.textContent = easyQuips.idle;
+            barEl.style.width = '0%';
+            return;
+          }
+
+          timeEl.textContent = this.formatSecondsToHuman(seconds, trapFound, len);
+
+          const logSec = seconds > 1 ? Math.log10(seconds) : 0;
+          const pct = trapFound ? 8 : Math.min(100, Math.max(8, Math.round((logSec / 11) * 100)));
+          barEl.style.width = `${pct}%`;
+
+          // Threshold: >= 10 years (~3.15e8 sec) = BOSS DEFEATED
+          if (!trapFound && seconds >= 3.15e8) {
+            bossesDefeated++;
+            badgeEl.textContent = '✅ DEFEATED!';
+            badgeEl.className = 'text-[9px] font-mono font-extrabold uppercase px-1.5 py-0.5 rounded border border-[#0f172a] accent-mint';
+            barEl.className = 'h-full bg-emerald-400 transition-all duration-300';
+            quipEl.textContent = easyQuips.win;
+          } else if (!trapFound && seconds >= 3600) {
+            badgeEl.textContent = '⚠️ HOLDING';
+            badgeEl.className = 'text-[9px] font-mono font-extrabold uppercase px-1.5 py-0.5 rounded border border-[#0f172a] accent-yellow';
+            barEl.className = 'h-full bg-amber-400 transition-all duration-300';
+            quipEl.textContent = easyQuips.mid;
+          } else {
+            badgeEl.textContent = '💥 CRACKED!';
+            badgeEl.className = 'text-[9px] font-mono font-extrabold uppercase px-1.5 py-0.5 rounded border border-[#0f172a] accent-orange';
+            barEl.className = 'h-full bg-rose-500 transition-all duration-300';
+            quipEl.textContent = easyQuips.lose;
+          }
+        };
+
+        updateBoss('riddler', riddlerSec, {
+          idle: '"Riddle me this: where is your password?"',
+          lose: '"Aha! My laptop solved your riddle in a blink!"',
+          mid: '"Hmm, tricky puzzle... give me a few hours!"',
+          win: '"DRAT! Even my cleverest riddles cannot crack this!"'
+        });
+
+        updateBoss('twoface', twofaceSec, {
+          idle: '"Heads I crack it, tails you lose!"',
+          lose: '"Heads! My botnet flipped your password open!"',
+          mid: '"My GPUs are heating up... 50/50 chance!"',
+          win: '"CURSES! Both sides of my coin bounced right off!"'
+        });
+
+        updateBoss('joker', jokerSec, {
+          idle: '"Why so serious? Type a password!"',
+          lose: '"HAHAHA! My 1-Trillion rig ate that for breakfast!"',
+          mid: '"Ooh, spicy! You are making my supercluster sweat!"',
+          win: '"NO FAIR! Even my Chaos Supercluster is stumped!"'
+        });
+
+        const summaryBadge = document.getElementById('villainSummaryBadge');
+        summaryBadge.textContent = `${bossesDefeated} / 3 Defeated`;
+        if (bossesDefeated === 3) {
+          summaryBadge.className = 'accent-mint border-2 border-[#0f172a] px-2.5 py-0.5 rounded-full font-mono text-[11px] font-extrabold shadow-[2px_2px_0px_#0f172a]';
+        } else if (bossesDefeated >= 1) {
+          summaryBadge.className = 'accent-yellow border-2 border-[#0f172a] px-2.5 py-0.5 rounded-full font-mono text-[11px] font-extrabold shadow-[2px_2px_0px_#0f172a]';
+        } else {
+          summaryBadge.className = 'accent-orange border-2 border-[#0f172a] px-2.5 py-0.5 rounded-full font-mono text-[11px] font-extrabold shadow-[2px_2px_0px_#0f172a]';
+        }
+      }
+
+      formatSecondsToHuman(seconds, trapFound, len) {
+        if (len === 0) return 'Instant';
+        if (trapFound || seconds < 0.01) return '0.001 Sec ⚡';
+        if (seconds < 1) return '< 1 Sec ⚡';
+        if (seconds < 60) return `${Math.round(seconds)} Secs`;
+        if (seconds < 3600) return `${Math.round(seconds / 60)} Mins`;
+        if (seconds < 86400) return `${Math.round(seconds / 3600)} Hours`;
+        if (seconds < 31536000) return `${Math.round(seconds / 86400)} Days`;
+        const years = seconds / 31536000;
+        if (years < 1000) return `${Math.round(years)} Years 🛡️`;
+        if (years < 1e6) return `${(years / 1e3).toFixed(1)}k Yrs 🛡️`;
+        if (years < 1e9) return `${(years / 1e6).toFixed(1)}M Yrs 🚀`;
+        if (years < 1e12) return `${(years / 1e9).toFixed(1)}B Yrs 🌌`;
+        return '4.2+ Trillion Yrs 🪐';
+      }
+
+      updateReqPill(id, passed) {
+        const el = document.getElementById(id);
+        if (!el) return;
+        const icon = el.querySelector('.req-icon');
+        if (passed) {
+          el.className = 'tint-green p-2.5 rounded-xl flex items-center gap-2 font-extrabold transition-all shadow-[2px_2px_0px_var(--shadow-color)]';
+          icon.textContent = '✅';
+        } else {
+          el.className = 's-elevated p-2.5 flex items-center gap-2 t-secondary transition-all';
+          icon.textContent = '⚪';
+        }
+      }
+
+      renderBanter() {
+        const list = this.banterLibrary[this.currentBracketKey] || this.banterLibrary.idle;
+        const item = list[this.banterIndex % list.length];
+        const bracketLabels = {
+          idle: 'Bracket: Idle',
+          tier1: '1–20 PTS (Riddler Laughs)',
+          tier2: '21–40 PTS (Weak Armor)',
+          tier3: '41–60 PTS (Riddler Beat!)',
+          tier4: '61–80 PTS (Two-Face Beat!)',
+          tier5: '81–100 PTS (Joker Beat!)'
+        };
+        document.getElementById('banterBracketTag').textContent = bracketLabels[this.currentBracketKey];
+        document.getElementById('hackmanSpeech').textContent = `"${item.h}"`;
+        document.getElementById('robinSpeech').textContent = `"${item.r}"`;
+      }
+
+      cycleBanterRemark() {
+        this.playTone('pop');
+        this.banterIndex++;
+        this.renderBanter();
+      }
+
+      toggleInputVisibility() {
+        this.playTone('pop');
+        const input = document.getElementById('analyserInput');
+        const emoji = document.getElementById('visEmoji');
+        const label = document.getElementById('visLabel');
+        if (input.type === 'password') {
+          input.type = 'text';
+          emoji.textContent = '🙈';
+          label.textContent = 'Hide';
+        } else {
+          input.type = 'password';
+          emoji.textContent = '👁️';
+          label.textContent = 'Show';
+        }
+      }
+
+      clearAnalyser() {
+        this.playTone('pop');
+        const input = document.getElementById('analyserInput');
+        const defusalInput = document.getElementById('defusalInput');
+        input.value = '';
+        if (defusalInput) defusalInput.value = '';
+        this.evaluatePassword('');
+      }
+
+      loadSamplePassword() {
+        if (this.defusalActive) {
+          this.showToast('🃏 CHALLENGE ACTIVE!', 'Type your password manually while the 15s timer is running!', '🚫');
+          return;
+        }
+        this.playTone('pop');
+        const samples = [
+          'password123',
+          'Gotham2025',
+          'Neon-Batarang-77',
+          'K9#vQ!88_GothamVault$26'
+        ];
+        const input = document.getElementById('analyserInput');
+        const defusalInput = document.getElementById('defusalInput');
+        const current = input.value;
+        const next = samples[(samples.indexOf(current) + 1) % samples.length];
+        input.value = next;
+        if (defusalInput) defusalInput.value = next;
+        input.type = 'text';
+        document.getElementById('visEmoji').textContent = '🙈';
+        document.getElementById('visLabel').textContent = 'Hide';
+        this.evaluatePassword(next);
+      }
+
+      autoUpgradeCurrentPassword() {
+        if (this.defusalActive) {
+          this.playTone('wipe');
+          this.showToast('🔒 LOCKED IN CHALLENGE!', 'Auto-Upgrade is disabled during the 15s Joker Defusal!', '🃏');
+          return;
+        }
+        this.playTone('success');
+        const input = document.getElementById('analyserInput');
+        const defusalInput = document.getElementById('defusalInput');
+        let raw = input.value.trim();
+
+        if (!raw) {
+          this.sendToAnalyser();
+          return;
+        }
+
+        // Sanitize dictionary traps & repeated characters so X-Ray reports 0 Weak Spots
+        const map = { a: '@', e: '3', i: '!', o: '0', s: '$' };
+        let upgraded = '';
+        for (let i = 0; i < raw.length; i++) {
+          const ch = raw[i];
+          if (map[ch.toLowerCase()]) {
+            upgraded += map[ch.toLowerCase()];
+          } else {
+            upgraded += ch;
+          }
+        }
+        // Break any remaining 3-character repeats or sequential runs
+        upgraded = upgraded.replace(/(.)\1{2,}/g, '$1#$1');
+        upgraded = upgraded.replace(/123/g, '9#7').replace(/abc/gi, 'X!Z');
+
+        const n1 = this.getCryptoRandomInt(89) + 10;
+        const c1 = String.fromCharCode(65 + this.getCryptoRandomInt(26));
+        const tag = `_Bat#${n1}!${c1}`;
+        if (!upgraded.includes('_Bat#')) {
+          upgraded += tag;
+        }
+        while (upgraded.length < 16) {
+          upgraded += `!${this.getCryptoRandomInt(9)}Z`;
+        }
+
+        input.value = upgraded;
+        if (defusalInput) defusalInput.value = upgraded;
+        input.type = 'text';
+        document.getElementById('visEmoji').textContent = '🙈';
+        document.getElementById('visLabel').textContent = 'Hide';
+        this.evaluatePassword(upgraded);
+        this.showToast('⚡ PASSWORD ARMOR-PLATED', 'Upgraded to defeat all 3 Gotham Bosses with 0 traps!', '🛡️');
+      }
+
+      // =====================================================================
+      // COLUMN 3: EPHEMERAL SECRET GENERATOR + FEATURE #4 PHRASE FORTRESS
+      // =====================================================================
+      setGeneratorMode(mode) {
+        this.playTone('pop');
+        this.genMode = mode;
+
+        ['cipher', 'phrase', 'words', 'leet', 'pin'].forEach((m) => {
+          const btn = document.getElementById('tabMode_' + m);
+          if (!btn) return;
+          const spanClass = m === 'pin' ? 'col-span-2 sm:col-span-2' : '';
+          if (m === mode) {
+            btn.className = `pop-btn-sm accent-yellow p-2.5 text-left flex items-center gap-2 ${spanClass}`;
+          } else {
+            btn.className = `pop-btn-sm btn-surface p-2.5 text-left flex items-center gap-2 ${spanClass}`;
+          }
+        });
+
+        document.getElementById('modeDescriptionText').textContent = this.modeDescriptions[mode];
+        document.getElementById('phraseFortressPanel').classList.toggle('hidden', mode !== 'phrase');
+        document.getElementById('charPoolGrid').classList.toggle('hidden', mode !== 'cipher');
+        document.getElementById('wordsControlSection').classList.toggle('hidden', mode !== 'words');
+        document.getElementById('lengthControlSection').classList.toggle('hidden', mode === 'phrase' || mode === 'words' || mode === 'leet');
+
+        // Adjust slider bounds for PIN vs Cipher
+        const slider = document.getElementById('lengthSlider');
+        const unitLabel = document.getElementById('lengthUnitLabel');
+        if (mode === 'pin') {
+          slider.min = 6;
+          slider.max = 16;
+          unitLabel.textContent = 'digits';
+          if (this.genLength > 16) this.setLength(12);
+        } else if (mode === 'cipher') {
+          slider.min = 8;
+          slider.max = 64;
+          unitLabel.textContent = 'chars';
+          if (this.genLength < 8) this.setLength(16);
+        }
+
+        this.generatePassword(true);
+        this.generateBulkBatch();
+      }
+
+      loadSamplePhrase() {
+        this.playTone('pop');
+        this.phraseSampleIdx = (this.phraseSampleIdx + 1) % this.samplePhrases.length;
+        document.getElementById('phraseSeedInput').value = this.samplePhrases[this.phraseSampleIdx];
+        this.generatePassword(true);
+        this.generateBulkBatch();
+      }
+
+      // FEATURE #4: Transform a memorable sentence into a fortress password + Word-by-Word Memory Map
+      buildPhraseFortress() {
+        const raw = (document.getElementById('phraseSeedInput').value || 'I love eating 3 slices of pizza on Fridays at 8!').trim();
+        const words = raw.split(/\s+/).filter(Boolean);
+        const breakdown = [];
+        let built = '';
+
+        const wordSubstitutions = {
+          to: '2', too: '2', two: '2',
+          for: '4', four: '4',
+          ate: '8', eight: '8',
+          at: '@', and: '&'
+        };
+        const leetVowels = { a: '@', e: '3', i: '!', o: '0', s: '$' };
+
+        words.forEach((w, idx) => {
+          const cleanLower = w.replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
+          let token = '';
+
+          if (/^\d+$/.test(cleanLower)) {
+            token = cleanLower;
+          } else if (wordSubstitutions[cleanLower]) {
+            token = wordSubstitutions[cleanLower];
+          } else if (cleanLower.length > 0) {
+            const firstChar = idx % 2 === 0 ? cleanLower[0].toUpperCase() : cleanLower[0].toLowerCase();
+            const secondChar = cleanLower.length > 4 && leetVowels[cleanLower[1]] ? leetVowels[cleanLower[1]] : '';
+            const trailingPunct = /[!@#$%^&*?]/.test(w[w.length - 1]) ? w[w.length - 1] : '';
+            token = firstChar + secondChar + trailingPunct;
+          } else {
+            token = w[0];
+          }
+
+          built += token;
+          breakdown.push({ word: w, token });
+        });
+
+        // Add cryptographic Bat-Shield suffix so it always defeats The Joker
+        const armorNum = this.getCryptoRandomInt(89) + 10;
+        const armorChar = String.fromCharCode(65 + this.getCryptoRandomInt(26));
+        const armorTag = `#${armorNum}!${armorChar}`;
+        built += armorTag;
+        breakdown.push({ word: '[Bat-Shield]', token: armorTag });
+
+        // Render Theme-Safe Word-by-Word Memory Map Pills
+        const pillsEl = document.getElementById('phraseBreakdownPills');
+        if (pillsEl) {
+          pillsEl.innerHTML = breakdown.map(item => `
+            <div class="s-elevated px-2 py-1 text-[11px] flex items-center gap-1 shadow-[1.5px_1.5px_0px_var(--shadow-color)]">
+              <span class="t-secondary font-semibold">${this.escapeHtml(item.word)}</span>
+              <span class="t-primary font-extrabold">→</span>
+              <span class="font-mono font-extrabold accent-yellow px-1.5 py-0.5 rounded border border-[#0f172a]">${this.escapeHtml(item.token)}</span>
+            </div>
+          `).join('');
+        }
+
+        const bits = Math.round(built.length * 6.1);
+        return { secret: built, bits };
+      }
+
+      setLength(val) {
+        const minLen = this.genMode === 'pin' ? 6 : 8;
+        const maxLen = this.genMode === 'pin' ? 16 : 64;
+        const clean = Math.max(minLen, Math.min(maxLen, parseInt(val, 10) || 16));
+        this.genLength = clean;
+        document.getElementById('lengthSlider').value = clean;
+        document.getElementById('lengthValueDisplay').textContent = clean;
+        this.generatePassword(false);
+        this.generateBulkBatch();
+      }
+
+      adjustLength(delta) {
+        this.playTone('pop');
+        this.setLength(this.genLength + delta);
+      }
+
+      createSingleSecret() {
+        const len = this.genLength;
+
+        if (this.genMode === 'phrase') {
+          return this.buildPhraseFortress();
+        }
+
+        if (this.genMode === 'words') {
+          const wordCount = parseInt(document.getElementById('optWordCount')?.value || '4', 10);
+          const sep = document.getElementById('optWordSep')?.value || '-';
+          const picked = [];
+          for (let i = 0; i < wordCount; i++) {
+            picked.push(this.comicWords[this.getCryptoRandomInt(this.comicWords.length)]);
+          }
+          const num = this.getCryptoRandomInt(89) + 10;
+          const syms = ['!', '#', '$', '%', '&', '?'];
+          const sym = syms[this.getCryptoRandomInt(syms.length)];
+          const secret = `${picked.join(sep)}${sep}${num}${sym}`;
+          return { secret, bits: Math.round(wordCount * 22 + 12) };
+        }
+
+        if (this.genMode === 'leet') {
+          const w1 = this.comicWords[this.getCryptoRandomInt(this.comicWords.length)];
+          let w2 = this.comicWords[this.getCryptoRandomInt(this.comicWords.length)];
+          if (w2 === w1) w2 = 'Gotham';
+          const leetMap = { a: '@', A: '4', e: '3', E: '3', i: '!', I: '1', o: '0', O: '0', s: '$', S: '$', t: '7', T: '7' };
+          const mutate = (str) => str.split('').map(c => leetMap[c] || c).join('');
+          const num = this.getCryptoRandomInt(899) + 100;
+          const syms = ['!#', '$!', '@?', '#*'];
+          const sym = syms[this.getCryptoRandomInt(syms.length)];
+          const secret = `${mutate(w1)}_${mutate(w2)}${sym}${num}`;
+          return { secret, bits: Math.round(secret.length * 5.8) };
+        }
+
+        if (this.genMode === 'pin') {
+          const pinLen = Math.max(6, Math.min(16, len));
+          let pin = '';
+          for (let i = 0; i < pinLen; i++) {
+            let d = this.getCryptoRandomInt(10).toString();
+            // Avoid 3 identical digits or simple 123 sequential runs
+            if (i >= 2 && pin[i - 1] === d && pin[i - 2] === d) {
+              d = ((parseInt(d, 10) + 3) % 10).toString();
+            }
+            if (i >= 2) {
+              const c0 = pin.charCodeAt(i - 2);
+              const c1 = pin.charCodeAt(i - 1);
+              const c2 = d.charCodeAt(0);
+              if ((c1 === c0 + 1 && c2 === c1 + 1) || (c1 === c0 - 1 && c2 === c1 - 1)) {
+                d = ((parseInt(d, 10) + 5) % 10).toString();
+              }
+            }
+            pin += d;
+          }
+          return { secret: pin, bits: Math.round(pinLen * Math.log2(10)) };
+        }
+
+        // Default: Random Cipher Mode
+        const useUpper = document.getElementById('optUpper').checked;
+        const useLower = document.getElementById('optLower').checked;
+        const useNum = document.getElementById('optNumbers').checked;
+        const useSym = document.getElementById('optSymbols').checked;
+        const noAmb = document.getElementById('optNoAmbiguous').checked;
+
+        const upperChars = noAmb ? 'ABCDEFGHJKLMNPQRSTUVWXYZ' : 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        const lowerChars = noAmb ? 'abcdefghijkmnopqrstuvwxyz' : 'abcdefghijklmnopqrstuvwxyz';
+        const numChars = noAmb ? '23456789' : '0123456789';
+        const symChars = '!@#$%^&*+-=?';
+
+        let pool = '';
+        const required = [];
+        if (useUpper) { pool += upperChars; required.push(this.randomGlyph(upperChars)); }
+        if (useLower) { pool += lowerChars; required.push(this.randomGlyph(lowerChars)); }
+        if (useNum) { pool += numChars; required.push(this.randomGlyph(numChars)); }
+        if (useSym) { pool += symChars; required.push(this.randomGlyph(symChars)); }
+
+        if (!pool) {
+          pool = lowerChars + numChars;
+          document.getElementById('optLower').checked = true;
+        }
+
+        const remaining = Math.max(0, len - required.length);
+        const chars = [...required];
+        for (let i = 0; i < remaining; i++) {
+          chars.push(pool[this.getCryptoRandomInt(pool.length)]);
+        }
+
+        // Cryptographic Fisher-Yates Shuffle
+        for (let i = chars.length - 1; i > 0; i--) {
+          const j = this.getCryptoRandomInt(i + 1);
+          [chars[i], chars[j]] = [chars[j], chars[i]];
+        }
+
+        const secret = chars.join('');
+        const bits = Math.round(secret.length * Math.log2(pool.length));
+        return { secret, bits };
+      }
+
+      randomGlyph(str) {
+        return str[this.getCryptoRandomInt(str.length)];
+      }
+
+      generatePassword(withSound = false) {
+        if (withSound) this.playTone('pop');
+        const { secret, bits } = this.createSingleSecret();
+        this.currentGenerated = secret;
+        this.isCloaked = false;
+        this.renderColorCodedPassword(secret);
+        document.getElementById('genEntropyBadge').textContent = `~${bits} bits`;
+        this.resetCloakTimer();
+      }
+
+      renderColorCodedPassword(str) {
+        const container = document.getElementById('generatedPasswordText');
+        let html = '';
+        for (const ch of str) {
+          if (/[0-9]/.test(ch)) {
+            html += `<span style="color: #38bdf8;">${this.escapeHtml(ch)}</span>`;
+          } else if (/[^A-Za-z0-9]/.test(ch)) {
+            html += `<span style="color: #ff7eb6;">${this.escapeHtml(ch)}</span>`;
+          } else {
+            html += `<span style="color: #f8fafc;">${this.escapeHtml(ch)}</span>`;
+          }
+        }
+        container.innerHTML = html;
+      }
+
+      escapeHtml(ch) {
+        const map = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' };
+        return String(ch).replace(/[&<>"']/g, m => map[m]);
+      }
+
+      resetCloakTimer() {
+        if (this.cloakInterval) clearInterval(this.cloakInterval);
+        const toggle = document.getElementById('optAutoCloak');
+        const status = document.getElementById('cloakCountdownText');
+
+        if (!toggle || !toggle.checked) {
+          status.textContent = '🛡️ Auto-Hide Off';
+          if (this.isCloaked) this.revealIfCloaked();
+          return;
+        }
+
+        this.cloakSeconds = 30;
+        status.textContent = `🕵️‍♂️ Hides in ${this.cloakSeconds}s`;
+
+        this.cloakInterval = setInterval(() => {
+          this.cloakSeconds--;
+          if (this.cloakSeconds > 0) {
+            status.textContent = `🕵️‍♂️ Hides in ${this.cloakSeconds}s`;
+          } else {
+            clearInterval(this.cloakInterval);
+            this.isCloaked = true;
+            document.getElementById('generatedPasswordText').innerHTML =
+              `<span style="color: #ffd43b;" class="text-xs sm:text-sm">•••••••••••• (TAP VAULT TO REVEAL SECRET)</span>`;
+            status.textContent = '🙈 Cloaked';
+          }
+        }, 1000);
+      }
+
+      revealIfCloaked() {
+        if (this.isCloaked) {
+          this.isCloaked = false;
+          this.renderColorCodedPassword(this.currentGenerated);
+          this.resetCloakTimer();
+        }
+      }
+
+      // =====================================================================
+      // FEATURE #5: SELF-DESTRUCTING CLIPBOARD & PANIC WIPE
+      // =====================================================================
+      copyMainPassword() {
+        if (!this.currentGenerated) return;
+        this.copyToClipboard(this.currentGenerated);
+        this.playTone('success');
+        const emoji = document.getElementById('copyMainEmoji');
+        const label = document.getElementById('copyMainLabel');
+        emoji.textContent = '✅';
+        label.textContent = 'COPIED!';
+        setTimeout(() => {
+          emoji.textContent = '📋';
+          label.textContent = 'COPY';
+        }, 1800);
+
+        this.startClipboardDestructTimer();
+      }
+
+      startClipboardDestructTimer() {
+        const useDestruct = document.getElementById('optClipDestruct').checked;
+        const bar = document.getElementById('clipboardDestructBar');
+        const countEl = document.getElementById('clipTimerCount');
+
+        if (this.clipInterval) clearInterval(this.clipInterval);
+        if (!useDestruct) {
+          bar.classList.add('hidden');
+          return;
+        }
+
+        this.clipSeconds = 30;
+        bar.classList.remove('hidden');
+        countEl.textContent = `${this.clipSeconds}s`;
+
+        this.clipInterval = setInterval(() => {
+          this.clipSeconds--;
+          if (this.clipSeconds > 0) {
+            countEl.textContent = `${this.clipSeconds}s`;
+          } else {
+            this.scrubClipboardNow();
+          }
+        }, 1000);
+      }
+
+      scrubClipboardNow() {
+        if (this.clipInterval) clearInterval(this.clipInterval);
+        this.copyToClipboard('[WIPED BY HACKMAN & ROBIN]');
+        document.getElementById('clipboardDestructBar').classList.add('hidden');
+        this.playTone('wipe');
+        this.showToast('🧹 CLIPBOARD SCRUBBED', 'Replaced clipboard with safe decoy text!', '💣');
+      }
+
+      sendToAnalyser() {
+        if (this.defusalActive) {
+          this.showToast('🃏 CHALLENGE ACTIVE!', 'Cannot send generated passwords during live 15s Defusal!', '🚫');
+          return;
+        }
+        this.playTone('pop');
+        const input = document.getElementById('analyserInput');
+        const defusalInput = document.getElementById('defusalInput');
+        input.value = this.currentGenerated;
+        if (defusalInput) defusalInput.value = this.currentGenerated;
+        input.type = 'text';
+        document.getElementById('visEmoji').textContent = '🙈';
+        document.getElementById('visLabel').textContent = 'Hide';
+        this.evaluatePassword(this.currentGenerated);
+
+        const win = document.getElementById('analyserWindow');
+        win.classList.remove('window-ping');
+        void win.offsetWidth;
+        win.classList.add('window-ping');
+        win.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+
+      generateBulkBatch() {
+        const list = document.getElementById('bulkBatchList');
+        if (!list) return;
+        this.bulkSecrets = [];
+        let html = '';
+        for (let i = 0; i < 3; i++) {
+          const { secret } = this.createSingleSecret();
+          this.bulkSecrets.push(secret);
+          html += `
+            <div class="s-elevated px-3 py-2 flex items-center justify-between gap-2">
+              <span class="font-mono font-extrabold text-xs t-primary truncate select-all">${this.escapeHtml(secret)}</span>
+              <button type="button" onclick="duoApp.copyBulkByIndex(this, ${i})"
+                      class="pop-btn-sm btn-surface px-2.5 py-1 font-display font-extrabold text-[11px] flex-shrink-0">
+                📋 Copy
+              </button>
+            </div>
+          `;
+        }
+        list.innerHTML = html;
+      }
+
+      copyBulkByIndex(btn, idx) {
+        const secret = this.bulkSecrets[idx];
+        if (!secret) return;
+        this.copyToClipboard(secret);
+        this.playTone('success');
+        this.startClipboardDestructTimer();
+        const orig = btn.innerHTML;
+        btn.innerHTML = '✅ Copied!';
+        btn.classList.add('accent-mint');
+        setTimeout(() => {
+          btn.innerHTML = orig;
+          btn.classList.remove('accent-mint');
+        }, 1500);
+      }
+
+      copyToClipboard(text) {
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.position = 'fixed';
+        ta.style.left = '-9999px';
+        document.body.appendChild(ta);
+        ta.select();
+        try { document.execCommand('copy'); } catch (e) {}
+        document.body.removeChild(ta);
+      }
+
+      // =====================================================================
+      // PANIC WIPE (ESC BOSS KEY) & TERMS MODAL
+      // =====================================================================
+      panicWipe(trigger = 'button') {
+        if (this.defusalActive) {
+          this.stopDefusalChallenge('aborted');
+        }
+        this.playTone('wipe');
+        const ws = document.getElementById('mainWorkspace');
+        ws.classList.remove('wipe-anim');
+        void ws.offsetWidth;
+        ws.classList.add('wipe-anim');
+
+        // 1. Scrub Both Analyser & Challenge Inputs
+        document.getElementById('analyserInput').value = '';
+        const defusalInput = document.getElementById('defusalInput');
+        if (defusalInput) defusalInput.value = '';
+        this.evaluatePassword('');
+
+        // 2. Scrub Clipboard with Decoy String
+        if (this.clipInterval) clearInterval(this.clipInterval);
+        document.getElementById('clipboardDestructBar').classList.add('hidden');
+        this.copyToClipboard('[WIPED BY HACKMAN & ROBIN]');
+
+        // 3. Re-roll and immediately Cloak the Generator Output
+        this.generatePassword(false);
+        this.generateBulkBatch();
+        this.isCloaked = true;
+        if (this.cloakInterval) clearInterval(this.cloakInterval);
+        document.getElementById('generatedPasswordText').innerHTML =
+          `<span style="color: #ffd43b;" class="text-xs sm:text-sm">•••••••••••• (WIPED &amp; CLOAKED — TAP TO REVEAL)</span>`;
+        document.getElementById('cloakCountdownText').textContent = '🚨 Boss Key Cloaked';
+
+        document.getElementById('hackmanSpeech').textContent =
+          '"PANIC WIPE EXECUTED! All password fields, RAM buffers, and your clipboard have been scrubbed clean!"';
+        document.getElementById('robinSpeech').textContent =
+          '"Holy smoke bomb, Hackman! Even if The Joker was peeking over your shoulder, he saw nothing!"';
+
+        this.showToast(
+          trigger === 'esc' ? '🚨 ESC BOSS KEY TRIGGERED' : '🚨 PANIC WIPE COMPLETE',
+          'Inputs cleared, screen masked & clipboard overwritten!',
+          '🧹'
+        );
+      }
+
+      openTermsModal() {
+        this.playTone('pop');
+        const modal = document.getElementById('termsModal');
+        modal.classList.remove('modal-hidden');
+        modal.classList.add('modal-active');
+      }
+
+      closeTermsModal() {
+        this.playTone('pop');
+        const modal = document.getElementById('termsModal');
+        modal.classList.remove('modal-active');
+        modal.classList.add('modal-hidden');
+      }
+
+      acceptTermsAndStamp() {
+        this.playTone('success');
+        this.closeTermsModal();
+        const stamp = document.getElementById('charterStampStatus');
+        stamp.textContent = '🦇 CHARTER STAMPED & ACCEPTED BY DETECTIVE';
+        this.showToast('📜 CHARTER STAMPED', 'Welcome to the Cyber Dynamic Duo!', '✅');
+      }
+    }
+
+    let duoApp;
+    window.addEventListener('DOMContentLoaded', () => {
+      duoApp = new HackmanRobinApp();
+      duoApp.init();
+    });
+  </script>
+</body>
+</html>
